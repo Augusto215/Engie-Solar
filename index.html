@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engie Solar</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Urbanist -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+     <!-- Font Awesome (apenas uma vez) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Carregando...</span>
+        </div>
+    </div>
+
+    <!-- Header com Navegação Inteligente -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+    <a class="navbar-brand" href="index.html">
+    <img src="img/logo4.png" alt="Engie Solar" class="logo"
+         style="filter: brightness(0) invert(1); height: 90px; object-fit:cover">
+</a>
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sobre">Sobre a Engie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#solucoes">Soluções</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projetos">Projetos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#depoimentos">Depoimentos</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contato">Contato</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-warning ms-3 franqueado-btn d-none d-lg-block" data-aos="fade-left" style="font-weight: 800;">Seja um franqueado</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+<!-- Hero Section com Imagem de Fundo -->
+
+<style>
+    /* CORREÇÃO ESPECÍFICA PARA CONFLITOS - Hero Section */
+
+/* Força o z-index correto para todos os elementos da hero */
+.hero-section {
+    position: relative !important;
+    height: 100vh !important;
+    min-height: 600px !important;
+    color: white !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
+}
+
+/* Imagem de fundo - deve ficar atrás */
+.hero-section .hero-image-container {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1 !important; /* Negativo para ficar atrás de tudo */
+}
+
+.hero-section .hero-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: -1 !important;
+}
+
+/* Overlay - sobre a imagem, mas atrás do texto */
+.hero-section .overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)) !important;
+    z-index: 0 !important;
+}
+
+/* Container principal - deve estar sobre tudo */
+.hero-section .container {
+    position: relative !important;
+    z-index: 999 !important;
+    height: 100% !important;
+}
+
+/* Força todos os elementos de texto para frente */
+.hero-section .hero-title {
+    position: relative !important;
+    z-index: 1000 !important;
+    color: #ffcc00 !important;
+    font-size: 3.5rem !important;
+    font-weight: 800 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+    text-transform: uppercase !important;
+}
+
+.hero-section .lead {
+    position: relative !important;
+    z-index: 1000 !important;
+    color: white !important;
+    font-size: 1.5rem !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+.hero-section .btn {
+    position: relative !important;
+    z-index: 1000 !important;
+}
+
+/* Estatísticas também devem ficar visíveis */
+.hero-section .stats-container {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    padding: 20px 0 !important;
+    z-index: 1001 !important;
+}
+
+.hero-section .stat-item {
+    position: relative !important;
+    z-index: 1002 !important;
+    text-align: center !important;
+    color: white !important;
+}
+
+/* Responsividade com !important para garantir que funcione */
+@media (max-width: 991.98px) {
+    .hero-section .hero-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section {
+        height: auto !important;
+        min-height: 100vh !important;
+        padding: 120px 0 150px !important;
+    }
+    
+    .hero-section .hero-title {
+        font-size: 2rem !important;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.1rem !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section .hero-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .hero-section .lead {
+        font-size: 1rem !important;
+    }
+    
+    .hero-section .btn-lg {
+        padding: 0.5rem 1rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* DEBUGGING - Adicione temporariamente para ver se o problema é resolvido */
+.hero-section * {
+    position: relative !important;
+}
+
+.hero-section .container,
+.hero-section .row,
+.hero-section .col-lg-8 {
+    z-index: 999 !important;
+}
+
+/* Se ainda não funcionar, use esta versão extrema */
+.hero-section .hero-title,
+.hero-section .lead,
+.hero-section .btn-warning,
+.hero-section .btn-outline-light {
+    position: relative !important;
+    z-index: 9999 !important;
+    background: rgba(255, 255, 255, 0.1) !important; /* Temporário para debug */
+    padding: 10px !important; /* Temporário para debug */
+}
+</style>
+
+
+<!-- ALTERNATIVA: Hero Section com background-image ao invés de <img> -->
+<section class="hero-section-alt">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-8 mx-auto text-center text-white">
+                <h1 class="display-3 fw-bold mb-3 hero-title" data-aos="fade-up">USE A ENERGIA AO SEU FAVOR</h1>
+                <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200">Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">FALE CONOSCO</a>
+                    <a href="#calculadora" class="btn btn-outline-light btn-lg" data-aos="fade-up" data-aos-delay="500">VEJA MAIS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<!-- Estatísticas -->
+<div class="stats-container">
+    <div class="container">
+        <div class="row">
+            <!-- Projetos instalados -->
+            <div class="col-md-4">
+                <div class="stat-item" data-aos="fade-up">
+                    <i class="fas fa-solar-panel"></i>
+                    <div class="counter-container">
+                        <span class="counter" data-target="500">0</span>
+                        <span class="counter-suffix">+</span>
+                    </div>
+                    <p>Projetos instalados</p>
+                </div>
+            </div>
+
+            <!-- Potência instalada -->
+            <div class="col-md-4">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-bolt"></i>
+                    <div class="counter-container">
+                        <span class="counter" data-target="5000">0</span>
+                        <span class="counter-suffix">kWp</span>
+                    </div>
+                    <p>Potência instalada</p>
+                </div>
+            </div>
+
+            <!-- CO₂ evitado -->
+            <div class="col-md-4">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-leaf"></i>
+                    <div class="counter-container">
+                        <span class="counter" data-target="2500">0</span>
+                        <span class="counter-suffix">ton</span>
+                    </div>
+                    <p>CO₂ evitado por ano</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+/* CSS para a versão alternativa */
+.hero-section-alt {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)),
+        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section-alt .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #ffcc00;
+    text-transform: uppercase;
+}
+
+.hero-section-alt .lead {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 0 auto;
+}
+</style>
+</section>
+
+    <!-- Seção de Soluções com Cards Dinâmicos -->
+    <section id="solucoes" class="solutions-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Nossas Soluções</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Energia solar personalizada para cada necessidade</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="flip-card" data-aos="fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="icon-container">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <h3>Energia Solar</h3>
+                                <h2>RESIDÊNCIAS</h2>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Para sua casa</h3>
+                                <ul>
+                                    <li>Economia de até 95% na conta de luz</li>
+                                    <li>Valorização do imóvel</li>
+                                    <li>Instalação rápida e sem sujeira</li>
+                                    <li>Monitoramento via aplicativo</li>
+                                </ul>
+                                <a href="#" class="btn btn-light mt-3">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="flip-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="icon-container">
+                                    <i class="fas fa-tractor"></i>
+                                </div>
+                                <h3>Energia Solar</h3>
+                                <h2>AGRONEGÓCIOS</h2>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Para sua produção rural</h3>
+                                <ul>
+                                    <li>Redução de custos operacionais</li>
+                                    <li>Sistemas adaptados para áreas rurais</li>
+                                    <li>Bombeamento solar para irrigação</li>
+                                    <li>Financiamento facilitado</li>
+                                </ul>
+                                <a href="#" class="btn btn-light mt-3">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="flip-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="icon-container">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3>Energia Solar</h3>
+                                <h2>EMPRESAS</h2>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Para seu negócio</h3>
+                                <ul>
+                                    <li>Redução de custos fixos</li>
+                                    <li>Marketing verde e sustentabilidade</li>
+                                    <li>Projetos sob medida</li>
+                                    <li>Retorno sobre investimento acelerado</li>
+                                </ul>
+                                <a href="#" class="btn btn-light mt-3" style="font-weight: 800;">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<style>
+    /* Centralização específica do título "Qual seria a visão da" */
+@media screen and (max-width: 400px) {
+    .section-title {
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+/* Se você quiser centralizar sempre, independente do tamanho da tela */
+.section-title {
+    text-align: center;
+}
+</style>
+
+
+    <!-- Seção Por que Escolher com Animações -->
+    <section id="sobre" class="why-choose-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="content-wrapper" data-aos="fade-right">
+                        <h2 class="section-title" style="text-align: center;">Qual seria a visão da</h2>
+<h1 class="company-name mb-4 text-center text-md-start">Engie Solar</h1>
+                        <p class="lead" style="font-weight: 400;">
+                           Somos especialistas em energia solar.
+Instalamos sistemas fotovoltaicos para residências e empresas que querem economizar na conta de luz, gerar sua própria energia e conquistar independência da rede elétrica.
+
+Com tecnologia de ponta e projetos personalizados, garantimos alta eficiência, retorno financeiro rápido e um impacto real na sustentabilidade.
+
+Reduza custos, valorize seu imóvel e invista no futuro.
+Compromisso, transparência e responsabilidade ambiental guiam tudo o que fazemos.
+
+Quer economizar de verdade? Fale com a gente e comece sua geração própria hoje.
+                        </p>
+                        <div style="text-align: center;">
+    <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">ENTRE EM CONTATO</a>
+</div>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="image-wrapper" data-aos="fade-left">
+                        <img src="./img/chelsea-WvusC5M-TM8-unsplash.jpg" alt="Energia Solar" class="img-fluid rounded shadow">
+                        <div class="experience-badge">
+                            <span class="years">10</span>
+                            <span class="text">Anos de<br>Experiência</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Seção de Diferenciais com Cards Modernos -->
+    <section class="features-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 50px; padding-bottom: 20px;">
+    <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 25px;">Nossos Diferenciais</h2>
+</div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card" data-aos="fade-up">
+                        <div class="feature-icon">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <h3>ENERGIA SOLAR É PARA TODOS</h3>
+                        <p style="font-weight: 500;">É para todos! Produza sua própria energia e pare de depender das fornecedoras convencionais.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>100% LIMPO E RENOVÁVEL</h3>
+                        <p style="font-weight: 500;">Emissão Zero de CO2 e fonte inesgotável. Abrace o sol e faça sua parte, o planeta agradece.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <h3>COMO FUNCIONA DURANTE O DIA?</h3>
+                        <p style="font-weight: 500;">O sistema converte energia solar em eletricidade e você consome normalmente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Interativa do Processo -->
+    <style>
+        /* Responsividade da Timeline para telas de 400px ou menores */
+@media screen and (max-width: 400px) {
+    /* Remove a linha central da timeline */
+    .timeline::before {
+        display: none !important;
+    }
+    
+    /* Centraliza todos os itens da timeline */
+    .timeline-item {
+        width: 100% !important;
+        left: 0 !important;
+        padding: 20px 0 !important;
+        margin-bottom: 30px !important;
+        text-align: center !important;
+    }
+    
+    /* Remove o posicionamento específico de ímpares e pares */
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Centraliza o ícone */
+    .timeline-icon {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        margin: 0 auto 20px auto !important;
+        top: auto !important;
+        transform: none !important;
+        display: block !important;
+    }
+    
+    /* Centraliza o conteúdo */
+    .timeline-content {
+        text-align: center !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 20px 15px !important;
+    }
+    
+    /* Remove as setas dos balões */
+    .timeline-content::after {
+        display: none !important;
+    }
+    
+    /* Centraliza títulos e texto */
+    .timeline-content h3 {
+        text-align: center !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .timeline-content p {
+        text-align: center !important;
+        margin: 0 !important;
+    }
+    
+    /* Ajusta o container da timeline */
+    .timeline-container {
+        padding: 0 15px !important;
+    }
+    
+    /* Centraliza os títulos da seção também */
+    .section-header .section-title,
+    .section-header .section-subtitle {
+        text-align: center !important;
+    }
+}
+    </style>
+
+    <section class="process-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Como Adquirir</h2>
+                
+            </div>
+            <div class="timeline-container" data-aos="fade-up">
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right" data-step="1" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="timeline-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Contato e Orçamento</h3>
+                            <p  style="font-weight: 500;">Consultoria técnica personalizada para entender suas necessidades.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-step="2" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="timeline-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Elaboração do Projeto</h3>
+                            <p  style="font-weight: 500;">Desenvolvimento técnico e aprovação do projeto personalizado.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right" data-step="3" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="timeline-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Regulamentação</h3>
+                            <p  style="font-weight: 500;">Aprovação do projeto junto à concessionária de energia.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-step="4" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="timeline-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Instalação</h3>
+                            <p  style="font-weight: 500;">Montagem do sistema por equipe especializada e certificada.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right" data-step="5" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <div class="timeline-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Vistoria e Ativação</h3>
+                            <p  style="font-weight: 500;">Inspeção final e ativação do sistema pela concessionária.</p>                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#contato" class="btn btn-warning btn-lg" data-aos="fade-up" style="font-weight: 800;">SOLICITE SEU ORÇAMENTO AGORA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Projetos com Filtros Dinâmicos -->
+    <section id="projetos" class="projects-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Nossos Projetos</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Conheça alguns dos nossos trabalhos realizados</p>
+            </div>
+            <div class="filter-buttons text-center mb-4" data-aos="fade-up">
+                <button class="btn btn-outline-primary filter-button active" data-filter="*"  style="font-weight: 500;">Todos</button>
+                <button class="btn btn-outline-primary filter-button" data-filter=".residencial"  style="font-weight: 500;">Residencial</button>
+                <button class="btn btn-outline-primary filter-button" data-filter=".comercial"  style="font-weight: 500;">Comercial</button>
+                <button class="btn btn-outline-primary filter-button" data-filter=".rural" style="font-weight: 500;">Rural</button>
+                <button class="btn btn-outline-primary filter-button" data-filter=".industrial" style="font-weight: 500;">Industrial</button>
+            </div>
+            <div class="row grid" data-aos="fade-up">
+                <div class="col-md-4 mb-4 grid-item residencial">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="./img/Afonso (3).jpeg" alt="Projeto Residencial" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-info">
+                                    <h4>Sistema Solar Residencial</h4>
+                                    <p>Potência: 5.2 kWp</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Sistema Solar Residencial</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 grid-item comercial">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="./img/bill-mead-wmaP3Tl80ww-unsplash.jpg" alt="Projeto Comercial" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-info">
+                                    <h4>Sistema Solar Comercial</h4>
+                                    <p>Potência: 75.6 kWp</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Sistema Solar Comercial</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 grid-item rural">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="./img/nuno-marques-0GbrjL3vZF4-unsplash.jpg" alt="Projeto Rural" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-info">
+                                    <h4>Sistema Solar Fazenda</h4>
+                                    <p>Potência: 112.8 kWp</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Sistema Solar Fazenda</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 grid-item industrial">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Projeto Industrial" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-info">
+                                    <h4>Sistema Solar Industrial</h4>
+                                    <p>Potência: 256.4 kWp</p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Sistema Solar Industrial</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 grid-item residencial">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="img/casa.jpg" alt="Projeto Residencial" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-info">
+                                    <h4>Sistema Solar Residencial</h4>
+                                    <p>Potência: 8.7 kWp</p>
+                                    
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Sistema Solar Residencial</h4>
+                            
+                        </div>
+                    </div>
+                </div>               
+            </div>
+             <div class="col-md-4 mb-4 grid-item comercial">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="./img/american-public-power-association-fm5_vCUa-Bc-unsplash.jpg" alt="Projeto Comercial" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-info">
+                                    <h4>Sistema Solar Agronegócio</h4>
+                                    <p>Potência: 32.4 kWp</p>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Sistema Solar Agronegócio</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    
+  
+<!-- Seção de Depoimentos - Cards Minimalistas -->
+<section id="depoimentos" class="testimonials-minimal py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="section-title" data-aos="fade-up">Depoimentos de Clientes</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Veja o que dizem sobre nossa qualidade e serviço
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Depoimento 1 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-minimal-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-quote" style="font-weight: 600;">
+                        "Reduzi 90% da minha conta de luz. Instalação rápida e sem complicações. Recomendo!"
+                    </p>
+                    <div class="testimonial-rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="testimonial-client">
+                        <div class="client-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="João Silva">
+                        </div>
+                        <div class="client-info">
+                            <h4>João Silva</h4>
+                            <span>Empresário</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 2 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-minimal-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-quote" style="font-weight: 600;">
+                        "Atendimento excepcional e projeto personalizado. Nossa empresa economiza milhares por mês."
+                    </p>
+                    <div class="testimonial-rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="testimonial-client">
+                        <div class="client-avatar">
+                            <img src="./img/marie-michele-bouchard-3U9BCWHMhUw-unsplash.jpg" alt="Maria Santos">
+                        </div>
+                        <div class="client-info">
+                            <h4>Maria Santos</h4>
+                            <span>Diretora Comercial</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 3 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="testimonial-minimal-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-quote" style="font-weight: 600;">
+                        "Sistema funcionando perfeitamente há 2 anos. Melhor investimento que já fiz!"
+                    </p>
+                    <div class="testimonial-rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="testimonial-client">
+                        <div class="client-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Carlos Oliveira">
+                        </div>
+                        <div class="client-info">
+                            <h4>Carlos Oliveira</h4>
+                            <span>Produtor Rural</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 4 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="testimonial-minimal-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-quote" style="font-weight: 600;">
+                        "Processo transparente, sem pegadinhas. Cumpriram todos os prazos prometidos."
+                    </p>
+                    <div class="testimonial-rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="testimonial-client">
+                        <div class="client-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Ana Costa">
+                        </div>
+                        <div class="client-info">
+                            <h4>Ana Costa</h4>
+                            <span>Arquiteta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 5 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="testimonial-minimal-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-quote" style="font-weight: 600;">
+                        "Equipe profissional e competente. Instalação limpa e sistema de alta qualidade."
+                    </p>
+                    <div class="testimonial-rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="testimonial-client">
+                        <div class="client-avatar">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Roberto Lima">
+                        </div>
+                        <div class="client-info">
+                            <h4>Roberto Lima</h4>
+                            <span>Comerciante</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 6 -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                <div class="testimonial-minimal-card">
+                    <div class="quote-icon" style="font-weight: 600;">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-quote" style="font-weight: 600;">
+                        "Suporte técnico excelente e sistema gerando mais energia do que esperávamos."
+                    </p>
+                    <div class="testimonial-rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <div class="testimonial-client">
+                        <div class="client-avatar">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face" alt="Pedro Alves">
+                        </div>
+                        <div class="client-info">
+                            <h4>Pedro Alves</h4>
+                            <span>Engenheiro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="700">
+            <p class="cta-text">Junte-se aos nossos clientes satisfeitos</p>
+            <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" style="font-weight: 800;">
+                <i class="fab fa-whatsapp me-2"></i>
+                Solicitar Orçamento
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CSS Minimalista -->
+<style>
+/* Seção de Depoimentos Minimalistas */
+.testimonials-minimal {
+    background-color: #fafafa;
+    position: relative;
+}
+
+.testimonial-minimal-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px 25px;
+    height: 100%;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-minimal-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    border-color: var(--secondary-color);
+}
+
+/* Ícone de aspas */
+.quote-icon {
+    position: absolute;
+    top: -15px;
+    left: 25px;
+    background: var(--secondary-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* Texto do depoimento */
+.testimonial-quote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    margin: 20px 0 25px 0;
+    flex-grow: 1;
+}
+
+/* Avaliação com estrelas */
+.testimonial-rating {
+    margin-bottom: 20px;
+}
+
+.stars {
+    color: #ffc107;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+/* Cliente */
+.testimonial-client {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.client-avatar {
+    flex-shrink: 0;
+}
+
+.client-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--secondary-color);
+}
+
+.client-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.client-info span {
+    font-size: 0.85rem;
+    color: #666;
+    display: block;
+    margin-top: 2px;
+}
+
+/* Call to Action */
+.cta-text {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .testimonial-minimal-card {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+    }
+    
+    .testimonial-quote {
+        font-size: 0.95rem;
+    }
+    
+    .client-avatar img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .client-info h4 {
+        font-size: 0.95rem;
+    }
+    
+    .client-info span {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animação de entrada suave */
+.testimonial-minimal-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay para cada cartão */
+.col-lg-4:nth-child(1) .testimonial-minimal-card { animation-delay: 0.1s; }
+.col-lg-4:nth-child(2) .testimonial-minimal-card { animation-delay: 0.2s; }
+.col-lg-4:nth-child(3) .testimonial-minimal-card { animation-delay: 0.3s; }
+.col-lg-4:nth-child(4) .testimonial-minimal-card { animation-delay: 0.4s; }
+.col-lg-4:nth-child(5) .testimonial-minimal-card { animation-delay: 0.5s; }
+.col-lg-4:nth-child(6) .testimonial-minimal-card { animation-delay: 0.6s; }
+</style>
+
+
+    <!-- Calculadora de Economia Interativa -->
+    <section id="calculadora" class="calculator-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Simule sua Economia</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Descubra quanto você pode economizar com energia solar</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="calculator-form p-4 rounded shadow-sm bg-white" data-aos="fade-right">
+                        <div class="mb-4">
+                            <label for="consumption" class="form-label">Consumo mensal (kWh)</label>
+                            <input type="range" class="form-range" id="consumption" min="100" max="2000" step="50" value="500">
+                            <div class="d-flex justify-content-between">
+                                <span>100 kWh</span>
+                                <span id="consumption-value">500 kWh</span>
+                                <span>2000 kWh</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="sun-hours" class="form-label">Horas de sol pleno na sua região</label>
+                            <input type="range" class="form-range" id="sun-hours" min="3" max="6" step="0.5" value="5">
+                            <div class="d-flex justify-content-between">
+                                <span>3h</span>
+                                <span id="sun-hours-value">5h</span>
+                                <span>6h</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="electricity-price" class="form-label">Valor do kWh na sua região (R$)</label>
+                            <input type="range" class="form-range" id="electricity-price" min="0.5" max="1.5" step="0.05" value="0.9">
+                            <div class="d-flex justify-content-between">
+                                <span>R$ 0,50</span>
+                                <span id="electricity-price-value">R$ 0,90</span>
+                                <span>R$ 1,50</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Estado</label>
+                            <select class="form-select" id="state">
+                               <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-warning w-100" id="calculate-btn">Calcular minha economia</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="calculator-results p-4 rounded shadow-sm bg-white" data-aos="fade-left">
+                        <div class="result-header mb-4">
+                            <h3>Resultados da simulação</h3>
+                            <p class="text-muted">Baseado nos dados informados</p>
+                        </div>
+                        <div class="result-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <h5>Tamanho do sistema:</h5>
+                                <h5 id="system-size">3.33 kWp</h5>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="result-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <h5>Economia anual:</h5>
+                                <h5 id="annual-savings">R$ 5.400,00</h5>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 54%" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="result-item mb-3">
+                            <div class="d-flex justify-content-between">
+                                <h5>Tempo de retorno:</h5>
+                                <h5 id="payback-time">4.8 anos</h5>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="result-item mb-4">
+                            <div class="d-flex justify-content-between">
+                                <h5>Redução de CO₂:</h5>
+                                <h5 id="co2-reduction">2.1 ton/ano</h5>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="savings-chart"></canvas>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="#contato" class="btn btn-outline-primary">Quero um orçamento personalizado</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Mapa Interativo de Projetos -->
+    <section class="map-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Onde Atuamos</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Conheça nossos projetos pelo Brasil</p>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <select class="form-select" id="filter-type">
+                        <option value="all">Todos os tipos</option>
+                        <option value="residencial">Residencial</option>
+                        <option value="comercial">Comercial</option>
+                        <option value="rural">Rural</option>
+                        <option value="industrial">Industrial</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" id="filter-size">
+                        <option value="all">Todos os tamanhos</option>
+                        <option value="small">Pequeno (até 10 kWp)</option>
+                        <option value="medium">Médio (10-50 kWp)</option>
+                        <option value="large">Grande (50-200 kWp)</option>
+                        <option value="xlarge">Extra grande (200+ kWp)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="map-container" data-aos="fade-up">
+                <div id="projects-map" style="height: 500px;"></div>
+            </div>
+            <div class="map-legend mt-3">
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #4CAF50;"></span>
+                        <span class="legend-text">Residencial</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #2196F3;"></span>
+                        <span class="legend-text">Comercial</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #FFC107;"></span>
+                        <span class="legend-text">Rural</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #9C27B0;"></span>
+                        <span class="legend-text">Industrial</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Formulário de Contato Inteligente -->
+    <section id="contato" class="contact-section py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Entre em Contato</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Estamos prontos para atender você</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="contact-info p-4 rounded shadow-sm bg-white" data-aos="fade-right">
+                        <h3 class="mb-4">Informações de Contato</h3>
+                        <div class="contact-item mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Unidade Nova Mutum - MT</h4>
+                                <p>Av. das Perdizes, nº 317 S quadra D lote 8, Nova Mutum - MT, 78450-000</p>
+                            </div>
+                        </div>
+                        <div class="contact-item mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Unidade Sidrolândia - MS</h4>
+                                <p>R. Rio Grande do Norte, 110 - Centro, Sidrolândia - MS, 79170-000</p>
+                            </div>
+                        </div>
+                        <div class="contact-item mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Telefones</h4>
+                                <p>(67) 3272-2090 / 99952-0449</p>
+                                <p>(67) 99688-9656</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>E-mail</h4>
+                                <p>contato@engiesolar.com.br</p>
+                            </div>
+                        </div>
+                        <div class="social-media mt-4">
+                            <h4>Redes Sociais</h4>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form p-4 rounded shadow-sm bg-white" data-aos="fade-left">
+                        <h3 class="mb-4">Envie sua mensagem</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label" style="font-weight: 600;">Nome completo</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                                <div class="invalid-feedback">Por favor, informe seu nome.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label" style="font-weight: 600;">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">Por favor, informe um e-mail válido.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label" style="font-weight: 600;">Telefone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" required>
+                                <div class="invalid-feedback">Por favor, informe um telefone válido.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label" style="font-weight: 600;">Assunto</label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="" selected disabled>Selecione um assunto</option>
+                                    <option value="orcamento" style="font-weight: 500;">Solicitar orçamento</option>
+                                    <option value="duvida" style="font-weight: 500;">Tirar dúvidas</option>
+                                    <option value="visita" style="font-weight: 500;">Agendar visita técnica</option>
+                                    <option value="outro" style="font-weight: 500;">Outro assunto</option>
+                                </select>
+                                <div class="invalid-feedback" style="font-weight: 600;">Por favor, selecione um assunto.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label" style="font-weight: 600;">Mensagem</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                                <div class="invalid-feedback">Por favor, escreva sua mensagem.</div>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="privacy-policy" required>
+                                <label class="form-check-label" for="privacy-policy">
+                                    Concordo com a <a href="#">Política de Privacidade</a>
+                                </label>
+                                <div class="invalid-feedback">Você deve concordar com a política de privacidade.</div>
+                            </div>
+                            <button type="submit" class="btn btn-warning w-100">Enviar mensagem</button>
+                        </form>
+                        <div class="form-feedback mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé Moderno -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="footer-brand">
+                        <img src="img/logo.png" alt="Engie Solar" style="width: 200px; height: auto;" class="footer-logo">
+                        <p class="mt-3">Soluções completas em energia solar fotovoltaica para residências, empresas e agronegócios.</p>
+                    </div>
+                    <div class="footer-social mt-4">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h4 class="footer-title">Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#sobre">Sobre nós</a></li>
+                        <li><a href="#solucoes">Soluções</a></li>
+                        <li><a href="#projetos">Projetos</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-6 mb-4 mb-md-0">
+                    <h4 class="footer-title">Serviços</h4>
+                    <ul class="footer-links">
+                        <li>Residencial</li>
+                        <li>Empresarial</li>
+                        <li>Agronegócio</li>
+                        <li>Manutenção</li>
+                        <li>Monitoramento</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p>Receba novidades e ofertas exclusivas diretamente no seu e-mail.</p>
+                    <form class="footer-newsletter mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Seu e-mail" required>
+                            <button class="btn btn-warning" type="submit">Inscrever</button>
+                        </div>
+                    </form>
+                    <div class="mt-4">
+                        <p class="mb-1"><i class="fas fa-phone-alt me-2"></i> (67) 3272-2090</p>
+                        <p><i class="fas fa-envelope me-2"></i> contato@engiesolar.com.br</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2025 Engie Solar. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="footer-policy-link">Política de Privacidade</a>
+                    <a href="#" class="footer-policy-link">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flutuante -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5567999520449" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="whatsapp-text">Fale conosco</span>
+        </a>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Modal para Timeline -->
+    <div class="modal fade" id="timelineModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Etapa do Processo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Conteúdo será inserido via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+ 
+    
+    <!-- Isotope -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    
+    <!-- jQuery Mask -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/forms.js"></script>
+</body>
+</html>

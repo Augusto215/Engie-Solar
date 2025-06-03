@@ -1,0 +1,347 @@
+/* Estilos responsivos para o site M J Feo Energia Solar */
+
+/* Dispositivos grandes (desktops, menos de 1200px) */
+@media (max-width: 1199.98px) {
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.3rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .timeline::before {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+    
+    .timeline-icon {
+        left: 6px;
+        top: 15px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-icon {
+        right: auto;
+        left: 6px;
+    }
+    
+    .timeline-content::after {
+        left: -10px;
+        top: 20px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after {
+        right: auto;
+        left: -10px;
+    }
+}
+
+/* Dispositivos médios (tablets, menos de 992px) */
+@media (max-width: 991.98px) {
+    .navbar-brand img.logo {
+        height: 50px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.2rem;
+    }
+    
+    .stats-container {
+        position: relative;
+        margin-top: -100px;
+    }
+    
+    .stat-item {
+        margin-bottom: 20px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .company-name {
+        font-size: 2.2rem;
+    }
+    
+    .content-wrapper {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .experience-badge {
+        bottom: -20px;
+        right: 20px;
+        width: 100px;
+        height: 100px;
+    }
+    
+    .experience-badge .years {
+        font-size: 2rem;
+    }
+    
+    .experience-badge .text {
+        font-size: 0.8rem;
+    }
+    
+    .testimonial-swiper {
+        padding-bottom: 50px;
+    }
+    
+    .calculator-form, .calculator-results {
+        margin-bottom: 30px;
+    }
+    
+    .contact-info, .contact-form {
+        margin-bottom: 30px;
+    }
+    
+    .footer {
+        padding: 60px 0 30px;
+    }
+    
+    .footer-title {
+        margin-top: 20px;
+    }
+}
+
+/* Dispositivos pequenos (landscape phones, menos de 768px) */
+@media (max-width: 767.98px) {
+    .navbar-brand img.logo {
+        height: 40px;
+    }
+    
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 120px 0 150px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.1rem;
+    }
+    
+    .stats-container {
+        position: relative;
+        margin-top: -150px;
+        padding: 20px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .company-name {
+        font-size: 2rem;
+    }
+    
+    .flip-card {
+        height: 300px;
+    }
+    
+    .icon-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .icon-container i {
+        font-size: 40px;
+    }
+    
+    .feature-icon {
+        font-size: 40px;
+    }
+    
+    .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .blog-image img {
+        height: 180px;
+    }
+    
+    .blog-title {
+        font-size: 1.1rem;
+    }
+    
+    .whatsapp-float a {
+        padding: 8px 8px;
+    }
+    
+    .whatsapp-text {
+        display: none;
+    }
+    
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        left: 20px;
+    }
+}
+
+/* Dispositivos muito pequenos (portrait phones, menos de 576px) */
+@media (max-width: 575.98px) {
+    .navbar-brand img.logo {
+        height: 35px;
+    }
+    
+    .hero-section {
+        padding: 100px 0 150px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .stats-container {
+        margin-top: -180px;
+    }
+    
+    .counter-container {
+        font-size: 1.5rem;
+    }
+    
+    .counter-suffix {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .company-name {
+        font-size: 1.8rem;
+    }
+    
+    .benefit-icon {
+        font-size: 20px;
+    }
+    
+    .benefit-content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .filter-button {
+        margin: 0 3px 8px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .project-details h4 {
+        font-size: 1rem;
+    }
+    
+    .testimonial-content {
+        padding: 20px;
+    }
+    
+    .testimonial-rating {
+        font-size: 16px;
+    }
+    
+    .testimonial-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .testimonial-info h4 {
+        font-size: 1rem;
+    }
+    
+    .blog-category {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+    
+    .blog-content {
+        padding: 15px;
+    }
+    
+    .blog-title {
+        font-size: 1rem;
+    }
+    
+    .blog-read-time {
+        font-size: 0.8rem;
+    }
+    
+    .contact-icon {
+        font-size: 20px;
+    }
+    
+    .contact-text h4 {
+        font-size: 1.1rem;
+    }
+    
+    .social-link {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .footer-logo {
+        height: 50px;
+    }
+    
+    .footer-title {
+        font-size: 1.1rem;
+    }
+    
+    .footer-policy-link {
+        margin-left: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .whatsapp-float i {
+        font-size: 24px;
+    }
+    
+    .back-to-top {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+}

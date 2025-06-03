@@ -1,0 +1,304 @@
+/* Animações para o site M J Feo Energia Solar */
+
+/* Animações de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animações para elementos específicos */
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fadeInLeft {
+    animation: fadeInLeft 0.8s ease forwards;
+}
+
+.animate-fadeInRight {
+    animation: fadeInRight 0.8s ease forwards;
+}
+
+.animate-zoomIn {
+    animation: zoomIn 0.8s ease forwards;
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Animações para ícones */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+/* Animações para botões */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animações para cards */
+.project-card, .blog-card, .feature-card, .testimonial-card {
+    transition: all 0.3s ease;
+}
+
+.project-card:hover, .blog-card:hover, .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Animações para imagens */
+.project-image img {
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+/* Animações para overlay */
+.project-overlay {
+    transition: opacity 0.3s ease;
+}
+
+/* Animações para links */
+.blog-read-more i {
+    transition: transform 0.3s ease;
+}
+
+.blog-read-more:hover i {
+    transform: translateX(5px);
+}
+
+/* Animações para navbar */
+.navbar {
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link::after {
+    transition: width 0.3s ease;
+}
+
+/* Animações para contador */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.counter {
+    animation: countUp 1s ease forwards;
+}
+
+/* Animações para timeline */
+.timeline-item {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.timeline-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animações para formulários */
+.form-control {
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 3px rgba(0, 153, 204, 0.25);
+    border-color: var(--primary-color);
+}
+
+/* Animações para social icons */
+.social-icon, .social-link {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover, .social-link:hover {
+    transform: scale(1.2);
+}
+
+/* Animações para WhatsApp flutuante */
+.whatsapp-float a {
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Animações para botão voltar ao topo */
+.back-to-top {
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+}
+
+/* Animações para preloader */
+.preloader {
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Animações para filtros */
+.filter-button {
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+    transform: translateY(-3px);
+}
+
+/* Animações para grid items */
+.grid-item {
+    transition: all 0.6s ease;
+}
+
+/* Animações para certificações */
+.certification-item {
+    transition: all 0.3s ease;
+}
+
+.certification-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Animações para footer links */
+.footer-links a {
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    padding-left: 5px;
+}
+
+/* Animações para calculadora */
+.progress-bar {
+    transition: width 1s ease;
+}
+
+/* Animações para swiper */
+.swiper-slide {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Animações para AOS */
+[data-aos] {
+    opacity: 0;
+    transition-property: opacity, transform;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+[data-aos="fade-up"] {
+    transform: translateY(50px);
+}
+
+[data-aos="fade-down"] {
+    transform: translateY(-50px);
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(-50px);
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(50px);
+}
+
+[data-aos="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-aos].aos-animate {
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Animações para flip cards */
+.flip-card-inner {
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
