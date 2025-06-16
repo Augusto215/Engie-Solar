@@ -681,7 +681,7 @@ if (document.readyState === 'loading') {
     <section class="features-section py-5 bg-light">
         <div class="container">
             <div class="section-header text-center" style="margin-bottom: 50px; padding-bottom: 20px;">
-    <h2 class="section-title" data-aos="fade-up" style="margin-bottom: 25px;">Nossos Diferenciais</h2>
+    <h2 class="section-title" id="diferenciais-title" data-aos="fade-up" style="margin-bottom: 25px;">Nossos Diferenciais</h2>
 </div>
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -1865,7 +1865,10 @@ async function carregarDiferenciais() {
     const data = { ...fallback, ...(isValido ? raw : {}) };
 
     const container = document.querySelector('.features-section .row');
+    const titleDiferenciais = document.querySelector('#diferenciais-title');
     container.innerHTML = '';
+    titleDiferenciais.innerText = data['titulo'];
+
 
     for (let i = 1; i <= 3; i++) {
       const titulo = data[`subtitulo_${i}`];
