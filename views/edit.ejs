@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Entrada</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .thumb-img { max-width: 150px; }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <h2 class="mb-4">Editar conteúdo</h2>
+
+    <form method="POST" action="/edit/<%= tabela %>/<%= section.id %>" class="bg-white p-4 rounded shadow-sm">
+      <% for (var key in section) {
+           if (key === 'id') continue;
+           var isImagem = key.includes('imagem');
+      %>
+        <% if (isImagem && tabela === 'engie_projetos') { %>
+          <div class="mb-4">
+            <label class="form-label text-capitalize"><%= key.replace('_', ' ') %></label>
+
+            <% if (section[key]) { %>
+              <div class="mb-2">
+                <img src="<%= section[key] %>" id="preview-<%= key %>" class="img-thumbnail thumb-img">
+              </div>
+            <% } else { %>
+              <div class="mb-2 text-muted" id="preview-<%= key %>">Sem imagem</div>
+            <% } %>
+
+            <input type="text" name="<%= key %>" id="<%= key %>" value="<%= section[key] %>" class="form-control mb-2" readonly>
+
+            <div class="d-flex gap-2">
+              <input type="file" id="file-<%= key %>" class="form-control form-control-sm d-none"
+                     onchange="enviarImagem(this, '<%= tabela %>', '<%= key %>', <%= section.id %>)">
+              <button type="button" class="btn btn-outline-success btn-sm"
+                      onclick="document.getElementById('file-<%= key %>').click()">Upload</button>
+              <% if (section[key]) { %>
+                <form action="/delete-image/<%= tabela %>/<%= key %>/<%= section.id %>" method="POST" class="d-inline">
+                  <button type="submit" class="btn btn-outline-danger btn-sm">Excluir</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="mb-3">
+            <label for="<%= key %>" class="form-label text-capitalize"><%= key.replace('_', ' ') %></label>
+            <% if (key.includes('texto') || key.includes('depoimento') || key.includes('subtitulo')) { %>
+              <textarea class="form-control" name="<%= key %>" id="<%= key %>" rows="3"><%- section[key] %></textarea>
+            <% } else { %>
+              <input type="text" class="form-control" name="<%= key %>" id="<%= key %>" value="<%= section[key] %>">
+            <% } %>
+          </div>
+        <% } %>
+      <% } %>
+
+      <div class="d-flex justify-content-between mt-4">
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    async function enviarImagem(input, tabela, campo, id) {
+      const file = input.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('imagem', file);
+
+      const res = await fetch(`/upload-image/${tabela}/${campo}/${id}`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (res.ok) {
+        const url = await res.text();
+        if (url) {
+          document.getElementById(campo).value = url;
+
+          const preview = document.getElementById(`preview-${campo}`);
+          if (preview.tagName === 'IMG') {
+            preview.src = url;
+          } else {
+            const img = document.createElement('img');
+            img.src = url;
+            img.className = "img-thumbnail thumb-img";
+            img.id = `preview-${campo}`;
+            preview.replaceWith(img);
+          }
+        }
+      } else {
+        alert('Erro ao fazer upload.');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -89,161 +89,286 @@
 <!-- Hero Section com Imagem de Fundo -->
 
 <style>
-    /* CORREÇÃO ESPECÍFICA PARA CONFLITOS - Hero Section */
+   .hero-section-alt {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* Força o z-index correto para todos os elementos da hero */
-.hero-section {
-    position: relative !important;
-    height: 100vh !important;
-    min-height: 600px !important;
-    color: white !important;
-    overflow: hidden !important;
-    z-index: 1 !important;
-}
+        .hero-section-alt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
 
-/* Imagem de fundo - deve ficar atrás */
-.hero-section .hero-image-container {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: -1 !important; /* Negativo para ficar atrás de tudo */
-}
+        .hero-section-alt .container {
+            position: relative;
+            z-index: 2;
+        }
 
-.hero-section .hero-image {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    z-index: -1 !important;
-}
+        .hero-title {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: white;
+            position: relative;
+        }
 
-/* Overlay - sobre a imagem, mas atrás do texto */
-.hero-section .overlay {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)) !important;
-    z-index: 0 !important;
-}
+        .hero-description-container {
+            position: relative;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-/* Container principal - deve estar sobre tudo */
-.hero-section .container {
-    position: relative !important;
-    z-index: 999 !important;
-    height: 100% !important;
-}
+        .hero-description {
+            position: absolute;
+            width: 100%;
+            color: white;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            text-align: center;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: blur(0px);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
 
-/* Força todos os elementos de texto para frente */
-.hero-section .hero-title {
-    position: relative !important;
-    z-index: 1000 !important;
-    color: #ffcc00 !important;
-    font-size: 3.5rem !important;
-    font-weight: 800 !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
-    text-transform: uppercase !important;
-}
+        /* Animações de saída */
+        .hero-description.slide-out-left {
+            opacity: 0;
+            transform: translateX(-100px) scale(0.9);
+            filter: blur(3px);
+        }
 
-.hero-section .lead {
-    position: relative !important;
-    z-index: 1000 !important;
-    color: white !important;
-    font-size: 1.5rem !important;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
-    max-width: 800px !important;
-    margin: 0 auto !important;
-}
+        .hero-description.slide-out-right {
+            opacity: 0;
+            transform: translateX(100px) scale(0.9);
+            filter: blur(3px);
+        }
 
-.hero-section .btn {
-    position: relative !important;
-    z-index: 1000 !important;
-}
+        .hero-description.fade-out-up {
+            opacity: 0;
+            transform: translateY(-50px) scale(0.85);
+            filter: blur(4px);
+        }
 
-/* Estatísticas também devem ficar visíveis */
-.hero-section .stats-container {
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    padding: 20px 0 !important;
-    z-index: 1001 !important;
-}
+        .hero-description.zoom-out {
+            opacity: 0;
+            transform: scale(0.5) rotateX(45deg);
+            filter: blur(5px);
+        }
 
-.hero-section .stat-item {
-    position: relative !important;
-    z-index: 1002 !important;
-    text-align: center !important;
-    color: white !important;
-}
+        /* Animações de entrada */
+        .hero-description.slide-in-left {
+            animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
 
-/* Responsividade com !important para garantir que funcione */
-@media (max-width: 991.98px) {
-    .hero-section .hero-title {
-        font-size: 2.5rem !important;
-    }
-    
-    .hero-section .lead {
-        font-size: 1.2rem !important;
-    }
-}
+        .hero-description.slide-in-right {
+            animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
 
-@media (max-width: 767.98px) {
-    .hero-section {
-        height: auto !important;
-        min-height: 100vh !important;
-        padding: 120px 0 150px !important;
-    }
-    
-    .hero-section .hero-title {
-        font-size: 2rem !important;
-    }
-    
-    .hero-section .lead {
-        font-size: 1.1rem !important;
-    }
-}
+        .hero-description.fade-in-down {
+            animation: fadeInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
 
-@media (max-width: 575.98px) {
-    .hero-section .hero-title {
-        font-size: 1.8rem !important;
-    }
-    
-    .hero-section .lead {
-        font-size: 1rem !important;
-    }
-    
-    .hero-section .btn-lg {
-        padding: 0.5rem 1rem !important;
-        font-size: 1rem !important;
-    }
-}
+        .hero-description.zoom-in {
+            animation: zoomIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
 
-/* DEBUGGING - Adicione temporariamente para ver se o problema é resolvido */
-.hero-section * {
-    position: relative !important;
-}
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px) scale(0.9);
+                filter: blur(3px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(10px) scale(1.02);
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0px);
+            }
+        }
 
-.hero-section .container,
-.hero-section .row,
-.hero-section .col-lg-8 {
-    z-index: 999 !important;
-}
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px) scale(0.9);
+                filter: blur(3px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(-10px) scale(1.02);
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0px);
+            }
+        }
 
-/* Se ainda não funcionar, use esta versão extrema */
-.hero-section .hero-title,
-.hero-section .lead,
-.hero-section .btn-warning,
-.hero-section .btn-outline-light {
-    position: relative !important;
-    z-index: 9999 !important;
-    background: rgba(255, 255, 255, 0.1) !important; /* Temporário para debug */
-    padding: 10px !important; /* Temporário para debug */
-}
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.85);
+                filter: blur(4px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateY(5px) scale(1.05);
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotateX(45deg);
+                filter: blur(5px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1) rotateX(10deg);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+                filter: blur(0px);
+            }
+        }
+
+        /* Efeito de brilho durante a animação */
+        .hero-description.glow-effect {
+            text-shadow: 
+                1px 1px 3px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ffc107, #ff8c00);
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
+        }
+
+        .btn-outline-light {
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-warning::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-warning:hover::before {
+            left: 100%;
+        }
+
+        /* Indicador de animação */
+        .animation-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 3;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .indicator-dot.active {
+            background: white;
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-description-container {
+                height: 140px;
+            }
+            
+            .hero-description {
+                font-size: 1.1rem;
+                padding: 0 15px;
+            }
+            
+            .d-flex.gap-3 {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-lg {
+                width: 80%;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-description-container {
+                height: 160px;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+        }
 </style>
+
 
 
 <!-- ALTERNATIVA: Hero Section com background-image ao invés de <img> -->
@@ -252,7 +377,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-lg-8 mx-auto text-center text-white">
                 <h1 class="display-3 fw-bold mb-3 hero-title" data-aos="fade-up">USE A ENERGIA AO SEU FAVOR</h1>
-                <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200">Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!</p>
+                <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200" id="heroDescription">Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!</p>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">FALE CONOSCO</a>
                     <a href="#calculadora" class="btn btn-outline-light btn-lg" data-aos="fade-up" data-aos-delay="500">VEJA MAIS</a>
@@ -262,6 +387,80 @@
     </div>
     
 </section>
+
+
+<!-- JAVASCRIPT - Adicione antes do </body> -->
+<script>
+// Certifique-se de que o AOS está inicializado
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+}
+
+// Array com as frases descritivas que irão alternar
+const frasesDescritivas = [
+    "Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!",
+    "Invista em energia solar e tenha economia garantida por mais de 25 anos. Sua casa, seu negócio, sua independência energética!",
+    "Pare de pagar caro pela energia elétrica. Com energia solar, você produz o que consome e ainda pode vender o excesso!",
+    "Transforme sua conta de luz em investimento. Energia solar: economia imediata e valorização do seu imóvel!",
+    "Energia limpa, renovável e econômica direto do seu telhado. Faça parte da revolução energética do Brasil!",
+    "Reduza até 95% da sua conta de luz com energia solar. Sustentabilidade que cabe no seu bolso!"
+];
+
+let fraseAtual = 0;
+
+// Função para trocar frases
+function trocarFrase() {
+    const heroDescription = document.getElementById('heroDescription');
+    
+    if (!heroDescription) {
+        console.log('Elemento heroDescription não encontrado');
+        return;
+    }
+    
+    // Adiciona classe para fade out
+    heroDescription.classList.add('fade-out');
+    
+    // Após a animação de fade out, troca o texto e faz fade in
+    setTimeout(() => {
+        fraseAtual = (fraseAtual + 1) % frasesDescritivas.length;
+        heroDescription.textContent = frasesDescritivas[fraseAtual];
+        
+        // Remove fade out e adiciona fade in
+        heroDescription.classList.remove('fade-out');
+        heroDescription.classList.add('fade-in');
+        
+        // Remove a classe fade-in após a animação completa
+        setTimeout(() => {
+            heroDescription.classList.remove('fade-in');
+        }, 800);
+    }, 400);
+}
+
+// Aguarda o DOM estar carregado
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicia a rotação das frases após 3 segundos
+    setTimeout(() => {
+        trocarFrase();
+        // Continua trocando a cada 5 segundos
+        setInterval(trocarFrase, 5000);
+    }, 3000);
+});
+
+// Fallback caso o DOMContentLoaded já tenha disparado
+if (document.readyState === 'loading') {
+    // DOM ainda não carregou
+} else {
+    // DOM já está carregado
+    setTimeout(() => {
+        trocarFrase();
+        setInterval(trocarFrase, 5000);
+    }, 3000);
+}
+</script>
+
 <!-- Estatísticas -->
 <div class="stats-container">
     <div class="container">
@@ -348,30 +547,7 @@
                 <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Energia solar personalizada para cada necessidade</p>
             </div>
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="flip-card" data-aos="fade-up">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="icon-container">
-                                    <i class="fas fa-home"></i>
-                                </div>
-                                <h3>Energia Solar</h3>
-                                <h2>RESIDÊNCIAS</h2>
-                            </div>
-                            <div class="flip-card-back">
-                                <h3>Para sua casa</h3>
-                                <ul>
-                                    <li>Economia de até 95% na conta de luz</li>
-                                    <li>Valorização do imóvel</li>
-                                    <li>Instalação rápida e sem sujeira</li>
-                                    <li>Monitoramento via aplicativo</li>
-                                </ul>
-                                <a href="#" class="btn btn-light mt-3">Saiba mais</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
+                    <div class="col-md-4 mb-4">
                     <div class="flip-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
@@ -388,6 +564,29 @@
                                     <li>Sistemas adaptados para áreas rurais</li>
                                     <li>Bombeamento solar para irrigação</li>
                                     <li>Financiamento facilitado</li>
+                                </ul>
+                                <a href="#" class="btn btn-light mt-3">Saiba mais</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div class="col-md-4 mb-4">
+                    <div class="flip-card" data-aos="fade-up">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="icon-container">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                
+                                <h2>USINAS DE INVESTIMENTOS</h2>
+                            </div>
+                            <div class="flip-card-back">
+                                <h3>Para sua casa</h3>
+                                <ul>
+                                    <li>Economia de até 95% na conta de luz</li>
+                                    <li>Valorização do imóvel</li>
+                                    <li>Instalação rápida e sem sujeira</li>
+                                    <li>Monitoramento via aplicativo</li>
                                 </ul>
                                 <a href="#" class="btn btn-light mt-3">Saiba mais</a>
                             </div>
@@ -440,42 +639,41 @@
 
 
     <!-- Seção Por que Escolher com Animações -->
-    <section id="sobre" class="why-choose-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="content-wrapper" data-aos="fade-right">
-                        <h2 class="section-title" style="text-align: center;">Qual seria a visão da</h2>
-<h1 class="company-name mb-4 text-center text-md-start">Engie Solar</h1>
-                        <p class="lead" style="font-weight: 400;">
-                           Somos especialistas em energia solar.
-Instalamos sistemas fotovoltaicos para residências e empresas que querem economizar na conta de luz, gerar sua própria energia e conquistar independência da rede elétrica.
+   <section id="sobre" class="why-choose-section py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="content-wrapper" data-aos="fade-right">
+          <h2 class="section-title text-center" id="visao-subtitulo">Qual seria a visão da</h2>
+          <h1 class="company-name mb-4 text-center text-md-start">Engie Solar</h1>
+          <p class="lead" id="visao-texto" style="font-weight: 400;">Somos especialistas em energia solar.
+                            Instalamos sistemas fotovoltaicos para residências e empresas que querem economizar na conta de luz, gerar sua própria energia e conquistar independência da rede elétrica.
 
-Com tecnologia de ponta e projetos personalizados, garantimos alta eficiência, retorno financeiro rápido e um impacto real na sustentabilidade.
+                            Com tecnologia de ponta e projetos personalizados, garantimos alta eficiência, retorno financeiro rápido e um impacto real na sustentabilidade.
 
-Reduza custos, valorize seu imóvel e invista no futuro.
-Compromisso, transparência e responsabilidade ambiental guiam tudo o que fazemos.
+                            Reduza custos, valorize seu imóvel e invista no futuro.
+                            Compromisso, transparência e responsabilidade ambiental guiam tudo o que fazemos.
 
-Quer economizar de verdade? Fale com a gente e comece sua geração própria hoje.
-                        </p>
-                        <div style="text-align: center;">
-    <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">ENTRE EM CONTATO</a>
-</div>
-                       
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="image-wrapper" data-aos="fade-left">
-                        <img src="./img/chelsea-WvusC5M-TM8-unsplash.jpg" alt="Energia Solar" class="img-fluid rounded shadow">
-                        <div class="experience-badge">
-                            <span class="years">10</span>
-                            <span class="text">Anos de<br>Experiência</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            Quer economizar de verdade? Fale com a gente e comece sua geração própria hoje.</p>
+          <div class="text-center">
+            <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">ENTRE EM CONTATO</a>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="image-wrapper" data-aos="fade-left">
+          <img id="visao-imagem" src="./img/chelsea-WvusC5M-TM8-unsplash.jpg" alt="Energia Solar" class="img-fluid rounded shadow">
+          <div class="experience-badge">
+            <span class="years">10</span>
+            <span class="text">Anos de<br>Experiência</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -509,8 +707,8 @@ Quer economizar de verdade? Fale com a gente e comece sua geração própria hoj
                         <div class="feature-icon">
                             <i class="fas fa-sun"></i>
                         </div>
-                        <h3>COMO FUNCIONA DURANTE O DIA?</h3>
-                        <p style="font-weight: 500;">O sistema converte energia solar em eletricidade e você consome normalmente.</p>
+                        <h3>USINAS DE INVESTIMENTOS</h3>
+                        <p style="font-weight: 500;">Sua terra passa a gerar renda com energia solar, aumentando sua rentabilidade e valorização no mercado.</p>
                     </div>
                 </div>
             </div>
@@ -656,130 +854,127 @@ Quer economizar de verdade? Fale com a gente e comece sua geração própria hoj
     </section>
 
     <!-- Galeria de Projetos com Filtros Dinâmicos -->
-    <section id="projetos" class="projects-section py-5 bg-light">
-        <div class="container">
-            <div class="section-header text-center mb-5">
-                <h2 class="section-title" data-aos="fade-up">Nossos Projetos</h2>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Conheça alguns dos nossos trabalhos realizados</p>
+   <section id="projetos" class="projects-section py-5 bg-light">
+  <div class="container">
+    <div class="section-header text-center mb-5">
+      <h2 class="section-title" data-aos="fade-up">Nossos Projetos</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Conheça alguns dos nossos trabalhos realizados</p>
+    </div>
+
+    <div class="filter-buttons text-center mb-4" data-aos="fade-up">
+      <button class="btn btn-outline-primary filter-button active" data-filter="*" style="font-weight: 500;">Todos</button>
+      <button class="btn btn-outline-primary filter-button" data-filter=".residencial" style="font-weight: 500;">Residencial</button>
+      <button class="btn btn-outline-primary filter-button" data-filter=".comercial" style="font-weight: 500;">Investimento</button>
+      <button class="btn btn-outline-primary filter-button" data-filter=".rural" style="font-weight: 500;">Industrial</button>
+      <button class="btn btn-outline-primary filter-button" data-filter=".industrial" style="font-weight: 500;">Fazenda</button>
+    </div>
+
+    <div class="row grid" data-aos="fade-up">
+      <div class="col-md-4 mb-4 grid-item residencial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-1" src="./img/Afonso (3).jpeg" alt="Projeto Residencial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Residencial</h4>
+                <p>Potência: 5.2 kWp</p>
+              </div>
             </div>
-            <div class="filter-buttons text-center mb-4" data-aos="fade-up">
-                <button class="btn btn-outline-primary filter-button active" data-filter="*"  style="font-weight: 500;">Todos</button>
-                <button class="btn btn-outline-primary filter-button" data-filter=".residencial"  style="font-weight: 500;">Residencial</button>
-                <button class="btn btn-outline-primary filter-button" data-filter=".comercial"  style="font-weight: 500;">Comercial</button>
-                <button class="btn btn-outline-primary filter-button" data-filter=".rural" style="font-weight: 500;">Rural</button>
-                <button class="btn btn-outline-primary filter-button" data-filter=".industrial" style="font-weight: 500;">Industrial</button>
-            </div>
-            <div class="row grid" data-aos="fade-up">
-                <div class="col-md-4 mb-4 grid-item residencial">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="./img/Afonso (3).jpeg" alt="Projeto Residencial" class="img-fluid">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h4>Sistema Solar Residencial</h4>
-                                    <p>Potência: 5.2 kWp</p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Sistema Solar Residencial</h4>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 grid-item comercial">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="./img/bill-mead-wmaP3Tl80ww-unsplash.jpg" alt="Projeto Comercial" class="img-fluid">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h4>Sistema Solar Comercial</h4>
-                                    <p>Potência: 75.6 kWp</p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Sistema Solar Comercial</h4>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 grid-item rural">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="./img/nuno-marques-0GbrjL3vZF4-unsplash.jpg" alt="Projeto Rural" class="img-fluid">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h4>Sistema Solar Fazenda</h4>
-                                    <p>Potência: 112.8 kWp</p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Sistema Solar Fazenda</h4>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 grid-item industrial">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Projeto Industrial" class="img-fluid">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h4>Sistema Solar Industrial</h4>
-                                    <p>Potência: 256.4 kWp</p>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Sistema Solar Industrial</h4>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 grid-item residencial">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="img/casa.jpg" alt="Projeto Residencial" class="img-fluid">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h4>Sistema Solar Residencial</h4>
-                                    <p>Potência: 8.7 kWp</p>
-                                    
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Sistema Solar Residencial</h4>
-                            
-                        </div>
-                    </div>
-                </div>               
-            </div>
-             <div class="col-md-4 mb-4 grid-item comercial">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="./img/american-public-power-association-fm5_vCUa-Bc-unsplash.jpg" alt="Projeto Comercial" class="img-fluid">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h4>Sistema Solar Agronegócio</h4>
-                                    <p>Potência: 32.4 kWp</p>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Sistema Solar Agronegócio</h4>
-                            
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Residencial</h4>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <div class="col-md-4 mb-4 grid-item comercial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-2" src="./img/muitas.jpg" alt="Projeto Comercial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Investimento</h4>
+                <p>Potência: 75.6 kWp</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Investimento</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 grid-item rural">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-3" src="./img/nuno-marques-0GbrjL3vZF4-unsplash.jpg" alt="Projeto Industrial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Industrial</h4>
+                <p>Potência: 112.8 kWp</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Industrial</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 grid-item industrial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-4" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?..." alt="Projeto Industrial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Fazenda</h4>
+                <p>Potência: 256.4 kWp</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Fazenda</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 grid-item residencial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-5" src="img/paineis-solares.webp" alt="Projeto Residencial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Residencial</h4>
+                <p>Potência: 8.7 kWp</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Residencial</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 grid-item comercial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-6" src="./img/american-public-power-association-fm5_vCUa-Bc-unsplash.jpg" alt="Projeto Comercial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Investimento</h4>
+                <p>Potência: 32.4 kWp</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Investimento</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     
   
@@ -793,7 +988,7 @@ Quer economizar de verdade? Fale com a gente e comece sua geração própria hoj
             </p>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4" id="depoimentos-container">
             <!-- Depoimento 1 -->
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <div class="testimonial-minimal-card">
@@ -1323,9 +1518,8 @@ Quer economizar de verdade? Fale com a gente e comece sua geração própria hoj
                                 <i class="fas fa-phone-alt"></i>
                             </div>
                             <div class="contact-text">
-                                <h4>Telefones</h4>
-                                <p>(67) 3272-2090 / 99952-0449</p>
-                                <p>(67) 99688-9656</p>
+                                <h4>Telefone</h4>
+                                <p>(17) 98146-2112</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1414,7 +1608,7 @@ Quer economizar de verdade? Fale com a gente e comece sua geração própria hoj
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="footer-brand">
                         <img src="img/logo.png" alt="Engie Solar" style="width: 200px; height: auto;" class="footer-logo">
-                        <p class="mt-3">Soluções completas em energia solar fotovoltaica para residências, empresas e agronegócios.</p>
+                        <p class="mt-3">Soluções completas em energia solar fotovoltaica para residências, empresas e usinas de investimentos.</p>
                     </div>
                     <div class="footer-social mt-4">
                         <a href="#" class="social-link">
@@ -1461,7 +1655,7 @@ Quer economizar de verdade? Fale com a gente e comece sua geração própria hoj
                         </div>
                     </form>
                     <div class="mt-4">
-                        <p class="mb-1"><i class="fas fa-phone-alt me-2"></i> (67) 3272-2090</p>
+                        <p class="mb-1"><i class="fas fa-phone-alt me-2"></i> (17) 98146-2112</p>
                         <p><i class="fas fa-envelope me-2"></i> contato@engiesolar.com.br</p>
                     </div>
                 </div>
@@ -1507,43 +1701,257 @@ Quer economizar de verdade? Fale com a gente e comece sua geração própria hoj
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
- 
-    
-    <!-- Isotope -->
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    
-    <!-- jQuery Mask -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/calculator.js"></script>
-    <script src="js/gallery.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/forms.js"></script>
+
+<!-- 1. SDKs externas primeiro -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<!-- 2. Supabase: inicialização + uso -->
+<script>
+  const { createClient } = supabase;
+
+  const supa = createClient(
+    'https://slixymwrmifwomrjqsbk.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNsaXh5bXdybWlmd29tcmpxc2JrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE0NDk0NTksImV4cCI6MjA1NzAyNTQ1OX0.ovheACqg_-4z7rmj1n_L4VXxJwE7zr6MWl6RSrFziKQ'
+  );
+</script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const { data, error } = await supa
+        .from('engie_projetos')
+        .select('imagem_1, imagem_2, imagem_3, imagem_4, imagem_5, imagem_6')
+        .limit(1)
+        .single();
+
+      if (error) {
+        console.error('Erro ao buscar imagens dos projetos:', error);
+        return;
+      }
+
+      // Lista de IDs mapeada com as colunas da tabela
+      const ids = ['projeto-1', 'projeto-2', 'projeto-3', 'projeto-4', 'projeto-5', 'projeto-6'];
+      ids.forEach((id, index) => {
+        const imgEl = document.getElementById(id);
+        const coluna = `imagem_${index + 1}`;
+        if (imgEl && data[coluna]) {
+          imgEl.src = data[coluna];
+        }
+      });
+
+    } catch (err) {
+      console.error('Erro inesperado ao carregar projetos:', err);
+    }
+  });
+</script>
+
+
+<!-- 3. Depoimentos direto do Supabase -->
+<script>
+  async function carregarDepoimentos() {
+    const { data, error } = await supa
+      .from('engie_depoimentos')
+      .select('*')
+      .limit(1)
+      .single();
+
+    if (error) {
+      console.error('Erro ao buscar depoimentos:', error);
+      return;
+    }
+
+    const textos = [];
+    for (let i = 1; i <= 6; i++) {
+      const key = `depoimento_${i}`;
+      if (data[key]) textos.push(data[key]);
+    }
+
+    const nomes = [
+      { nome: 'João Silva', cargo: 'Empresário', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face' },
+      { nome: 'Maria Santos', cargo: 'Diretora Comercial', img: './img/marie-michele-bouchard-3U9BCWHMhUw-unsplash.jpg' },
+      { nome: 'Carlos Oliveira', cargo: 'Produtor Rural', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face' },
+      { nome: 'Ana Costa', cargo: 'Arquiteta', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face' },
+      { nome: 'Roberto Lima', cargo: 'Comerciante', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face' },
+      { nome: 'Pedro Alves', cargo: 'Engenheiro', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face' },
+    ];
+
+    const container = document.getElementById('depoimentos-container');
+    container.innerHTML = '';
+
+    textos.forEach((texto, i) => {
+      const pessoa = nomes[i];
+      const card = `
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="${(i + 1) * 100}">
+          <div class="testimonial-minimal-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="testimonial-quote" style="font-weight: 600;">"${texto}"</p>
+            <div class="testimonial-rating">
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testimonial-client">
+              <div class="client-avatar">
+                <img src="${pessoa.img}" alt="${pessoa.nome}">
+              </div>
+              <div class="client-info">
+                <h4>${pessoa.nome}</h4>
+                <span>${pessoa.cargo}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      container.innerHTML += card;
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', carregarDepoimentos);
+</script>
+
+
+
+
+
+<!-- 4. APIs backend via Express -->
+<script>
+  async function carregarVisao() {
+    try {
+      const res = await fetch('/api/visao');
+      if (!res.ok) throw new Error('Erro ao carregar /api/visao');
+      const visao = await res.json();
+
+      if (visao.subtitulo) document.getElementById('visao-subtitulo').textContent = visao.subtitulo;
+      if (visao.texto) document.getElementById('visao-texto').textContent = visao.texto;
+
+      const imagem = visao.imagem || visao.imagem_1 || visao.imagem_visao;
+      if (imagem) document.getElementById('visao-imagem').src = imagem;
+    } catch (err) {
+      console.error('Erro ao carregar visão:', err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', carregarVisao);
+</script>
+
+<script>
+async function carregarDiferenciais() {
+  const fallback = {
+    subtitulo_1: 'ENERGIA SOLAR É PARA TODOS',
+    texto_1: 'É para todos! Produza sua própria energia e pare de depender das fornecedoras convencionais.',
+    subtitulo_2: '100% LIMPO E RENOVÁVEL',
+    texto_2: 'Emissão Zero de CO2 e fonte inesgotável. Abrace o sol e faça sua parte, o planeta agradece.',
+    subtitulo_3: 'USINAS DE INVESTIMENTOS',
+    texto_3: 'Sua terra passa a gerar renda com energia solar, aumentando sua rentabilidade e valorização no mercado.'
+  };
+
+  const icones = ['fa-solar-panel', 'fa-leaf', 'fa-sun'];
+
+  try {
+    const res = await fetch('/api/diferenciais');
+    const raw = await res.json();
+    const isValido = raw && typeof raw === 'object' && raw.subtitulo_1;
+    const data = { ...fallback, ...(isValido ? raw : {}) };
+
+    const container = document.querySelector('.features-section .row');
+    container.innerHTML = '';
+
+    for (let i = 1; i <= 3; i++) {
+      const titulo = data[`subtitulo_${i}`];
+      const texto = data[`texto_${i}`];
+
+      const card = `
+        <div class="col-md-4 mb-4">
+          <div class="feature-card" data-aos="fade-up">
+            <div class="feature-icon"><i class="fas ${icones[i - 1]}"></i></div>
+            <h3>${titulo}</h3>
+            <p style="font-weight: 500;">${texto}</p>
+          </div>
+        </div>`;
+      container.innerHTML += card;
+    }
+  } catch (err) {
+    console.error('[X] Falha ao carregar diferenciais, usando fallback.', err);
+    const container = document.querySelector('.features-section .row');
+    container.innerHTML = '';
+
+    for (let i = 1; i <= 3; i++) {
+      const titulo = fallback[`subtitulo_${i}`];
+      const texto = fallback[`texto_${i}`];
+
+      const card = `
+        <div class="col-md-4 mb-4">
+          <div class="feature-card" data-aos="fade-up">
+            <div class="feature-icon"><i class="fas ${icones[i - 1]}"></i></div>
+            <h3>${titulo}</h3>
+            <p style="font-weight: 500;">${texto}</p>
+          </div>
+        </div>`;
+      container.innerHTML += card;
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', carregarDiferenciais);
+</script>
+
+
+
+<script>
+  async function carregarProjetos() {
+    try {
+      const res = await fetch('/api/projetos');
+      const projetos = await res.json();
+      const container = document.querySelector('.projects-section .grid');
+      container.innerHTML = '';
+
+      projetos.forEach(p => {
+        const card = `
+          <div class="col-md-4 mb-4 grid-item ${p.tipo}">
+            <div class="project-card">
+              <div class="project-image">
+                <img src="${p.imagem}" alt="${p.titulo}" class="img-fluid">
+                <div class="project-overlay">
+                  <div class="project-info">
+                    <h4>${p.titulo}</h4>
+                    <p>Potência: ${p.potencia}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="project-details">
+                <h4>${p.titulo}</h4>
+              </div>
+            </div>
+          </div>`;
+        container.innerHTML += card;
+      });
+    } catch (err) {
+      console.error('Erro ao carregar projetos:', err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', carregarProjetos);
+</script>
+
+<!-- 5. Seus scripts customizados por último -->
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/map.js"></script>
+<script src="js/forms.js"></script>
+
+
 </body>
 </html>
