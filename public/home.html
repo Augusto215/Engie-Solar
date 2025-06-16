@@ -543,7 +543,7 @@ if (document.readyState === 'loading') {
     <section id="solucoes" class="solutions-section py-5">
         <div class="container">
             <div class="section-header text-center mb-5">
-                <h2 class="section-title" data-aos="fade-up">Nossas Soluções</h2>
+                <h2 class="section-title" data-aos="fade-up" id="solucoes-title">Nossas Soluções</h2>
                 <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Energia solar personalizada para cada necessidade</p>
             </div>
             <div class="row">
@@ -554,8 +554,8 @@ if (document.readyState === 'loading') {
                                 <div class="icon-container">
                                     <i class="fas fa-tractor"></i>
                                 </div>
-                                <h3>Energia Solar</h3>
-                                <h2>AGRONEGÓCIOS</h2>
+                               
+                                <h2>Energia Solar<br>AGRONEGÓCIOS</h2>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Para sua produção rural</h3>
@@ -600,8 +600,8 @@ if (document.readyState === 'loading') {
                                 <div class="icon-container">
                                     <i class="fas fa-building"></i>
                                 </div>
-                                <h3>Energia Solar</h3>
-                                <h2>EMPRESAS</h2>
+                                
+                                <h2>Energia Solar<br>EMPRESAS</h2>
                             </div>
                             <div class="flip-card-back">
                                 <h3>Para seu negócio</h3>
@@ -1906,9 +1906,51 @@ async function carregarDiferenciais() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', carregarDiferenciais);
-</script>
+async function carregarSolucoes() {
+  console.log('⏳ Iniciando carregamento de soluções...');
 
+  try {
+    const res = await fetch('/api/solucoes');
+    console.log('📡 Requisição feita para /api/solucoes. Status:', res.status);
+
+    if (!res.ok) {
+      throw new Error(`❌ Erro HTTP: ${res.status} ${res.statusText}`);
+    }
+
+    const data = await res.json();
+    console.log('📦 Dados recebidos da API:', data);
+
+    if (!data || typeof data !== 'object') {
+      throw new Error('❌ Resposta inválida: não é um objeto');
+    }
+
+    const titleSolucoes = document.querySelector('#solucoes-title');
+    if (!titleSolucoes) {
+      console.error('❌ Elemento #solucoes-title não encontrado no DOM');
+      throw new Error('Elemento #solucoes-title ausente');
+    }
+
+    if (!data.titulo) {
+      console.warn('⚠️ Campo "titulo" ausente na resposta');
+    } else {
+      titleSolucoes.innerText = data.titulo;
+      console.log('✅ Título de soluções atualizado com sucesso:', data.titulo);
+    }
+
+  } catch (err) {
+    console.error('[X] Falha ao carregar /api/solucoes:', err);
+    alert('Erro ao carregar dados de soluções. Verifique o console para detalhes.');
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  carregarDiferenciais();
+  carregarSolucoes();
+});
+
+</script>
+  
 
 
 <script>
