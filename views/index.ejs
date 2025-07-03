@@ -2,88 +2,391 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Painel Admin</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engie - Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    .entry-img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-    }
-    .entry-row {
-      border-top: 1px solid #dee2e6;
-      padding: 15px 0;
-    }
-    .entry-title {
-      font-weight: bold;
-    }
-    .admin-header {
-      background-color: #343a40;
-      color: white;
-      padding: 20px;
-      margin-bottom: 30px;
-    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-btn.active { background-color: rgb(55, 65, 81 ); color: white; }
   </style>
 </head>
-<body class="bg-light">
-  <header class="admin-header text-center">
-    <h1 class="m-0">Painel Admin</h1>
-  </header>
-
-  <div class="container">
-  <% for (let tabela in data) { %>
-  <h3 class="mb-3 text-capitalize"><%= tabela.replace('engie_', '').replace('_', ' ') %></h3>
-  <div class="bg-white p-3 rounded shadow-sm mb-5">
-    <% if (!data[tabela].length) { %>
-      <div class="text-muted">Nenhum conteúdo disponível.</div>
-    <% } else { %>
-      <div class="row fw-bold border-bottom pb-2">
-        <% if (tabela === 'engie_projetos') { %>
-          <div class="col">Imagens</div>
-          <div class="col">Ações</div>
-        <% } else { %>
-          <% Object.keys(data[tabela][0]).filter(k => k !== 'id').forEach(campo => { %>
-            <div class="col"><%= campo %></div>
-          <% }) %>
-          <div class="col">Ações</div>
-        <% } %>
+<body class="bg-gray-950 min-h-screen">
+  <!-- Sidebar -->
+  <div class="flex">
+    <div class="w-64 bg-gray-900 min-h-screen border-r border-gray-800">
+      <!-- Header -->
+      <div class="p-6 border-b border-gray-800">
+        <h2 class="text-xl font-bold text-white">Engie</h2>
       </div>
+      
+      <!-- Navigation -->
+      <nav class="p-4 space-y-2">
+        <!-- Botão Header (CORRIGIDO: Começa com 'active') -->
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors active" onclick="showTab('header')">
+          <i class="bi bi-window-desktop"></i>
+          <span>Header</span>
+        </button>
+        <!-- Botão Footer (CORRIGIDO: Ordem e sem 'active') -->
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('footer')">
+          <i class="bi bi-window-bottom"></i>
+          <span>Footer</span>
+        </button>
+        <!-- Botão Depoimentos (CORRIGIDO: Sem 'active') -->
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('depoimentos')">
+          <i class="bi bi-chat-square-text"></i>
+          <span>Depoimentos</span>
+        </button>
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('diferenciais')">
+          <i class="bi bi-database"></i>
+          <span>Diferenciais</span>
+        </button>
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('projetos')">
+          <i class="bi bi-images"></i>
+          <span>Projetos</span>
+        </button>
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('solucoes')">
+          <i class="bi bi-lightbulb"></i>
+          <span>Soluções</span>
+        </button>
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('visao')">
+          <i class="bi bi-eye"></i>           <span>Visão</span>
+        </button>
+      </nav>
+    </div>
 
-      <% data[tabela].forEach(item => { %>
-        <div class="row entry-row align-items-start">
-          <% if (tabela === 'engie_projetos') { %>
-            <div class="col">
-              <% Object.keys(item).filter(k => k.includes('imagem')).forEach(k => { %>
-                <img src="<%= item[k] %>" class="entry-img rounded me-2 mb-2" alt="">
-              <% }) %>
-            </div>
-            <div class="col">
-              <a href="/edit/<%= tabela %>/<%= item.id %>" class="btn btn-sm btn-outline-secondary">
-                <i class="bi bi-pencil"></i> Editar
-              </a>
-            </div>
-          <% } else { %>
-            <% Object.keys(item).filter(k => k !== 'id').forEach(campo => { %>
-              <div class="col">
-                <% if (campo.includes('imagem')) { %>
-                  <img src="<%= item[campo] %>" class="entry-img rounded" alt="">
-                <% } else { %>
-                  <small><%= item[campo] %></small>
-                <% } %>
-              </div>
-            <% }) %>
-            <div class="col">
-              <a href="/edit/<%= tabela %>/<%= item.id %>" class="btn btn-sm btn-outline-secondary">
-                <i class="bi bi-pencil"></i> Editar
-              </a>
-            </div>
-          <% } %>
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Header -->
+      <header class="bg-gray-900 border-b border-gray-800 p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-bold text-white">Dashboard</h1>
+            <p class="text-gray-400">Visualize e gerencie seu conteúdo com facilidade</p>
+          </div>
         </div>
-      <% }) %>
-    <% } %>
-  </div>
-<% } %>
+      </header>
 
+      <!-- Main Content Area -->
+      <main class="p-6">
+
+        <!-- Header Tab (CORRIGIDO: Começa com 'active') -->
+        <div id="header" class="tab-content active">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg">
+            <div class="p-6 border-b border-gray-800">
+              <h3 class="text-xl font-semibold text-white">Header</h3>
+            </div>
+            <div class="p-6 overflow-x-auto">
+              <% if (!data.engie_header || !data.engie_header.length) { %>
+                <div class="text-gray-400 text-center py-8">
+                  Nenhum conteúdo disponível para o Header.
+                </div>
+              <% } else { %>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-[repeat(14,minmax(150px,1fr))] gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+                    <% Object.keys(data.engie_header[0]).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
+                      <div class="truncate"><%= campo %></div>
+                    <% }) %>
+                    <div>Ações</div>
+                  </div>
+                  <% data.engie_header.forEach(item => { %>
+                    <div class="grid grid-cols-[repeat(14,minmax(150px,1fr))] gap-4 py-4 border-b border-gray-800 text-sm items-start">
+                      <% Object.keys(item).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
+                        <div class="text-gray-300 break-words">
+                          <% if (campo.includes('url') && item[campo]) { %>
+                            <a href="<%= item[campo] %>" target="_blank" class="text-blue-400 hover:underline"><%= item[campo] %></a>
+                          <% } else { %>
+                            <%= item[campo] %>
+                          <% } %>
+                        </div>
+                      <% }) %>
+                      <div>
+                        <a href="/edit/engie_header/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white whitespace-nowrap">
+                          <i class="bi bi-pencil mr-2"></i> Editar
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Tab (CORRIGIDO: Sem 'active') -->
+        <div id="footer" class="tab-content">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg">
+            <div class="p-6 border-b border-gray-800">
+              <h3 class="text-xl font-semibold text-white">Footer</h3>
+            </div>
+            <div class="p-6 overflow-x-auto">
+              <% if (!data.engie_footer || !data.engie_footer.length) { %>
+                <div class="text-gray-400 text-center py-8">
+                  Nenhum conteúdo disponível para o Footer.
+                </div>
+              <% } else { %>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-[repeat(15,minmax(150px,1fr))] gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+                    <% Object.keys(data.engie_footer[0]).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
+                      <div class="truncate"><%= campo %></div>
+                    <% }) %>
+                    <div>Ações</div>
+                  </div>
+                  <% data.engie_footer.forEach(item => { %>
+                    <div class="grid grid-cols-[repeat(15,minmax(150px,1fr))] gap-4 py-4 border-b border-gray-800 text-sm items-start">
+                      <% Object.keys(item).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
+                        <div class="text-gray-300 break-words">
+                          <% if (campo.includes('url') && item[campo]) { %>
+                            <a href="<%= item[campo] %>" target="_blank" class="text-blue-400 hover:underline"><%= item[campo] %></a>
+                          <% } else { %>
+                            <%= item[campo] %>
+                          <% } %>
+                        </div>
+                      <% }) %>
+                      <div>
+                        <a href="/edit/engie_footer/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white whitespace-nowrap">
+                          <i class="bi bi-pencil mr-2"></i> Editar
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimentos Tab (CORRIGIDO: Sem 'active') -->
+        <div id="depoimentos" class="tab-content">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg">
+            <div class="p-6 border-b border-gray-800">
+              <h3 class="text-xl font-semibold text-white">Depoimentos</h3>
+            </div>
+            <div class="p-6">
+              <% if (!data.engie_depoimentos || !data.engie_depoimentos.length) { %>
+                <div class="text-gray-400 text-center py-8">
+                  Nenhum conteúdo disponível.
+                </div>
+              <% } else { %>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-7 gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+                    <% Object.keys(data.engie_depoimentos[0]).filter(k => k !== 'id').forEach(campo => { %>
+                      <div><%= campo %></div>
+                    <% }) %>
+                    <div>Ações</div>
+                  </div>
+                  <% data.engie_depoimentos.forEach(item => { %>
+                    <div class="grid grid-cols-7 gap-4 py-4 border-b border-gray-800 text-sm">
+                      <% Object.keys(item).filter(k => k !== 'id').forEach(campo => { %>
+                        <div class="text-gray-300">
+                          <% if (campo.includes('imagem')) { %>
+                            <img src="<%= item[campo] %>" class="w-20 h-20 object-cover rounded-lg" alt="">
+                          <% } else { %>
+                            <%= item[campo] %>
+                          <% } %>
+                        </div>
+                      <% }) %>
+                      <div>
+                        <a href="/edit/engie_depoimentos/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white">
+                          <i class="bi bi-pencil mr-2"></i> Editar
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diferenciais Tab -->
+        <div id="diferenciais" class="tab-content">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg">
+            <div class="p-6 border-b border-gray-800">
+              <h3 class="text-xl font-semibold text-white">Diferenciais</h3>
+            </div>
+            <div class="p-6">
+              <% if (!data.engie_diferenciais || !data.engie_diferenciais.length) { %>
+                <div class="text-gray-400 text-center py-8">
+                  Nenhum conteúdo disponível.
+                </div>
+              <% } else { %>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-7 gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+                    <% Object.keys(data.engie_diferenciais[0]).filter(k => k !== 'id').forEach(campo => { %>
+                      <div><%= campo %></div>
+                    <% }) %>
+                    <div>Ações</div>
+                  </div>
+                  <% data.engie_diferenciais.forEach(item => { %>
+                    <div class="grid grid-cols-7 gap-4 py-4 border-b border-gray-800 text-sm">
+                      <% Object.keys(item).filter(k => k !== 'id').forEach(campo => { %>
+                        <div class="text-gray-300">
+                          <% if (campo.includes('imagem')) { %>
+                            <img src="<%= item[campo] %>" class="w-20 h-20 object-cover rounded-lg" alt="">
+                          <% } else { %>
+                            <%= item[campo] %>
+                          <% } %>
+                        </div>
+                      <% }) %>
+                      <div>
+                        <a href="/edit/engie_diferenciais/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white">
+                          <i class="bi bi-pencil mr-2"></i> Editar
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projetos Tab -->
+        <div id="projetos" class="tab-content">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg">
+            <div class="p-6 border-b border-gray-800">
+              <h3 class="text-xl font-semibold text-white">Projetos</h3>
+            </div>
+            <div class="p-6">
+              <% if (!data.engie_projetos || !data.engie_projetos.length) { %>
+                <div class="text-gray-400 text-center py-8">
+                  Nenhum conteúdo disponível.
+                </div>
+              <% } else { %>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-2 gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+                    <div>Imagens</div>
+                    <div>Ações</div>
+                  </div>
+                  <% data.engie_projetos.forEach(item => { %>
+                    <div class="grid grid-cols-2 gap-4 py-4 border-b border-gray-800 text-sm">
+                      <div class="flex flex-wrap gap-2">
+                        <% Object.keys(item).filter(k => k.includes('imagem')).forEach(k => { %>
+                          <img src="<%= item[k] %>" class="w-20 h-20 object-cover rounded-lg" alt="">
+                        <% }) %>
+                      </div>
+                      <div>
+                        <a href="/edit/engie_projetos/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white">
+                          <i class="bi bi-pencil mr-2"></i> Editar
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Soluções Tab -->
+        <div id="solucoes" class="tab-content">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg">
+            <div class="p-6 border-b border-gray-800">
+              <h3 class="text-xl font-semibold text-white">Soluções</h3>
+            </div>
+            <div class="p-6">
+              <% if (!data.engie_solucoes || !data.engie_solucoes.length) { %>
+                <div class="text-gray-400 text-center py-8">
+                  Nenhum conteúdo disponível.
+                </div>
+              <% } else { %>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-7 gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+                    <% Object.keys(data.engie_solucoes[0]).filter(k => k !== 'id').forEach(campo => { %>
+                      <div><%= campo %></div>
+                    <% }) %>
+                    <div>Ações</div>
+                  </div>
+                  <% data.engie_solucoes.forEach(item => { %>
+                    <div class="grid grid-cols-7 gap-4 py-4 border-b border-gray-800 text-sm">
+                      <% Object.keys(item).filter(k => k !== 'id').forEach(campo => { %>
+                        <div class="text-gray-300">
+                          <% if (campo.includes('imagem')) { %>
+                            <img src="<%= item[campo] %>" class="w-20 h-20 object-cover rounded-lg" alt="">
+                          <% } else { %>
+                            <%= item[campo] %>
+                          <% } %>
+                        </div>
+                      <% }) %>
+                      <div>
+                        <a href="/edit/engie_solucoes/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white">
+                          <i class="bi bi-pencil mr-2"></i> Editar
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visão Tab -->
+        <div id="visao" class="tab-content">
+          <div class="bg-gray-900 border border-gray-800 rounded-lg">
+            <div class="p-6 border-b border-gray-800">
+              <h3 class="text-xl font-semibold text-white">Visão</h3>
+            </div>
+            <div class="p-6">
+              <% if (!data.engie_visao || !data.engie_visao.length) { %>
+                <div class="text-gray-400 text-center py-8">
+                  Nenhum conteúdo disponível.
+                </div>
+              <% } else { %>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-7 gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+                    <% Object.keys(data.engie_visao[0]).filter(k => k !== 'id').forEach(campo => { %>
+                      <div><%= campo %></div>
+                    <% }) %>
+                    <div>Ações</div>
+                  </div>
+                  <% data.engie_visao.forEach(item => { %>
+                    <div class="grid grid-cols-7 gap-4 py-4 border-b border-gray-800 text-sm">
+                      <% Object.keys(item).filter(k => k !== 'id').forEach(campo => { %>
+                        <div class="text-gray-300">
+                          <% if (campo.includes('imagem')) { %>
+                            <img src="<%= item[campo] %>" class="w-20 h-20 object-cover rounded-lg" alt="">
+                          <% } else { %>
+                            <%= item[campo] %>
+                          <% } %>
+                        </div>
+                      <% }) %>
+                      <div>
+                        <a href="/edit/engie_visao/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white">
+                          <i class="bi bi-pencil mr-2"></i> Editar
+                        </a>
+                      </div>
+                    </div>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      // Esconde todos os painéis de conteúdo
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Mostra o painel de conteúdo clicado
+      document.getElementById(tabId).classList.add('active');
+      
+      // Remove o destaque de todos os botões
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Adiciona o destaque apenas ao botão clicado
+      event.currentTarget.classList.add('active');
+    }
+  </script>
 </body>
 </html>

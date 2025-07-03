@@ -17,7 +17,7 @@ dotenv.config()
 const app = express()
 const upload = multer({ dest: 'uploads/' })
 const BUCKET = 'engie-projetos'
-const tables = ['engie_depoimentos', 'engie_diferenciais', 'engie_projetos', 'engie_visao', 'engie_solucoes']
+const tables = ['engie_depoimentos', 'engie_diferenciais', 'engie_projetos', 'engie_visao', 'engie_solucoes', 'engie_header', 'engie_footer']
 
 // Configura EJS
 app.set('view engine', 'ejs')
@@ -44,6 +44,61 @@ app.get('/admin', async (req, res) => {
   }
 
   res.render('index', { data })
+})
+
+// No seu index.js, adicione estas rotas:
+
+// API para Header
+app.get('/api/header', async (req, res) => {
+  const { data, error } = await supabase.from('engie_header').select('*').limit(1).single();
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data || {});
+});
+
+// API para Footer
+app.get('/api/footer', async (req, res) => {
+  const { data, error } = await supabase.from('engie_footer').select('*').limit(1).single();
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data || {});
+});
+
+
+
+// API pública para diferenciais
+app.get('/api/header', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('engie_header')
+      .select('*')
+      .limit(1)
+      .maybeSingle()
+
+    if (error) throw error
+
+    res.json(data || {})
+  } catch (err) {
+    console.error('[X] API /api/diferenciais:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
+
+
+// API pública para diferenciais
+app.get('/api/footer', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('engie_footer')
+      .select('*')
+      .limit(1)
+      .maybeSingle()
+
+    if (error) throw error
+
+    res.json(data || {})
+  } catch (err) {
+    console.error('[X] API /api/diferenciais:', err.message)
+    res.status(500).json({ error: err.message })
+  }
 })
 
 // API pública para diferenciais
@@ -82,6 +137,22 @@ app.get('/api/solucoes', async (req, res) => {
   }
 })
 
+app.get('/api/visao', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('engie_visao')
+      .select('*')
+      .limit(1)
+      .maybeSingle()
+
+    if (error) throw error
+
+    res.json(data || {})
+  } catch (err) {
+    console.error('[X] API /api/visao:', err.message)
+    res.status(500).json({ error: err.message })
+  }
+})
 
 
 
@@ -218,7 +289,7 @@ app.post('/edit/:tabela/:id', upload.none(), async (req, res) => {
   }
 
   console.log('✅ Atualização concluída com sucesso')
-  res.redirect('/')
+  res.redirect('/admin')
 })
 
 

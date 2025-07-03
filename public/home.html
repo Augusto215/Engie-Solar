@@ -47,43 +47,46 @@
     </div>
 
     <!-- Header com Navegação Inteligente -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <div class="container">
-    <a class="navbar-brand" href="index.html">
-    <img src="img/logo4.png" alt="Engie Solar" class="logo"
-         style="filter: brightness(0) invert(1); height: 90px; object-fit:cover">
-</a>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <!-- ID para a imagem do logo -->
+                <img src="img/logo4.png" alt="Engie Solar" class="logo" id="header-logo"
+                     style="filter: brightness(0) invert(1); height: 90px; object-fit:cover">
+            </a>
 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#sobre">Sobre a Engie</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#solucoes">Soluções</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#projetos">Projetos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#depoimentos">Depoimentos</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contato">Contato</a>
-                        </li>
-                    </ul>
-                    
-                    <a href="#" class="btn btn-warning ms-3 franqueado-btn d-none d-lg-block" data-aos="fade-left" style="font-weight: 800;">Seja um franqueado</a>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- ID para a lista de links de navegação (o container <ul>) -->
+                <ul class="navbar-nav me-auto" id="header-links">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre a Engie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solucoes">Soluções</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projetos">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#depoimentos">Depoimentos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+                
+                <!-- ID para o botão de ação -->
+                <a href="#" class="btn btn-warning ms-3 franqueado-btn d-none d-lg-block" id="header-button" data-aos="fade-left" style="font-weight: 800;">Seja um franqueado</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
+
 
 
 <!-- Hero Section com Imagem de Fundo -->
@@ -333,6 +336,11 @@
             .hero-title {
                 font-size: 2.5rem;
             }
+
+            .display-3
+            {
+                font-size: 1.6rem !important;
+            }
             
             .hero-description-container {
                 height: 140px;
@@ -372,9 +380,9 @@
 
 
 <!-- ALTERNATIVA: Hero Section com background-image ao invés de <img> -->
-<section class="hero-section-alt">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
+<section class="hero-section-alt d-flex flex-column justify-content-center align-items-center">
+    <div class="container mobile-main">
+        <div class="row  align-items-center">
             <div class="col-lg-8 mx-auto text-center text-white">
                 <h1 class="display-3 fw-bold mb-3 hero-title" data-aos="fade-up">USE A ENERGIA AO SEU FAVOR</h1>
                 <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200" id="heroDescription">Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!</p>
@@ -621,7 +629,7 @@ if (document.readyState === 'loading') {
     </section>
 <style>
     /* Centralização específica do título "Qual seria a visão da" */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
     .section-title {
         text-align: center !important;
         width: 100% !important;
@@ -663,10 +671,10 @@ if (document.readyState === 'loading') {
 
       <div class="col-lg-6">
         <div class="image-wrapper" data-aos="fade-left">
-          <img id="visao-imagem" src="./img/chelsea-WvusC5M-TM8-unsplash.jpg" alt="Energia Solar" class="img-fluid rounded shadow">
+          <img id="visao-imagem" src="./img/muitas.jpg" alt="Energia Solar" class="img-fluid rounded shadow">
           <div class="experience-badge">
-            <span class="years">10</span>
-            <span class="text">Anos de<br>Experiência</span>
+            <span class="years">50+</span>
+            <span class="text">Projetos<br>Realizados</span>
           </div>
         </div>
       </div>
@@ -683,7 +691,7 @@ if (document.readyState === 'loading') {
             <div class="section-header text-center" style="margin-bottom: 50px; padding-bottom: 20px;">
     <h2 class="section-title" id="diferenciais-title" data-aos="fade-up" style="margin-bottom: 25px;">Nossos Diferenciais</h2>
 </div>
-            <div class="row">
+            <div class="features-row row">
                 <div class="col-md-4 mb-4">
                     <div class="feature-card" data-aos="fade-up">
                         <div class="feature-icon">
@@ -718,7 +726,7 @@ if (document.readyState === 'loading') {
     <!-- Timeline Interativa do Processo -->
     <style>
         /* Responsividade da Timeline para telas de 400px ou menores */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
     /* Remove a linha central da timeline */
     .timeline::before {
         display: none !important;
@@ -857,7 +865,7 @@ if (document.readyState === 'loading') {
    <section id="projetos" class="projects-section py-5 bg-light">
   <div class="container">
     <div class="section-header text-center mb-5">
-      <h2 class="section-title" data-aos="fade-up">Nossos Projetos</h2>
+      <h2 class="section-title" data-aos="fade-up">Projetos</h2>
       <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Conheça alguns dos nossos trabalhos realizados</p>
     </div>
 
@@ -1212,7 +1220,7 @@ if (document.readyState === 'loading') {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: auto;
+    margin-top: auto;       
 }
 
 .client-avatar {
@@ -1418,9 +1426,7 @@ if (document.readyState === 'loading') {
                         <div class="chart-container">
                             <canvas id="savings-chart"></canvas>
                         </div>
-                        <div class="text-center mt-4">
-                            <a href="#contato" class="btn btn-outline-primary">Quero um orçamento personalizado</a>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -1430,7 +1436,7 @@ if (document.readyState === 'loading') {
    
 
     <!-- Mapa Interativo de Projetos -->
-    <section class="map-section py-5 bg-light">
+    <section class="map-section py-5 bg-light d-none">
         <div class="container">
             <div class="section-header text-center mb-5">
                 <h2 class="section-title" data-aos="fade-up">Onde Atuamos</h2>
@@ -1495,22 +1501,14 @@ if (document.readyState === 'loading') {
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="contact-info p-4 rounded shadow-sm bg-white" data-aos="fade-right">
                         <h3 class="mb-4">Informações de Contato</h3>
+                      
                         <div class="contact-item mb-4">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="contact-text">
-                                <h4>Unidade Nova Mutum - MT</h4>
-                                <p>Av. das Perdizes, nº 317 S quadra D lote 8, Nova Mutum - MT, 78450-000</p>
-                            </div>
-                        </div>
-                        <div class="contact-item mb-4">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Unidade Sidrolândia - MS</h4>
-                                <p>R. Rio Grande do Norte, 110 - Centro, Sidrolândia - MS, 79170-000</p>
+                                <h4>Votuporanga - SP</h4>
+                                <p>R. Piauí, 3234 - Centro, Votuporanga - SP, 15502-245</p>
                             </div>
                         </div>
                         <div class="contact-item mb-4">
@@ -1522,28 +1520,20 @@ if (document.readyState === 'loading') {
                                 <p>(17) 98146-2112</p>
                             </div>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>E-mail</h4>
-                                <p>contato@engiesolar.com.br</p>
-                            </div>
-                        </div>
+                      
                         <div class="social-media mt-4">
                             <h4>Redes Sociais</h4>
                             <div class="d-flex mt-3">
-                                <a href="#" class="social-link">
+                                <a href="https://www.facebook.com/people/Engie-Solar/100086647774389/" class="social-link">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="#" class="social-link">
+                                <a href="https://www.instagram.com/engiesolar/" class="social-link">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="#" class="social-link">
+                                <a href="#" class="d-none social-link">
                                     <i class="fab fa-youtube"></i>
                                 </a>
-                                <a href="#" class="social-link">
+                                <a href="#" class="d-none social-link">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
                             </div>
@@ -1602,80 +1592,89 @@ if (document.readyState === 'loading') {
     </section>
 
     <!-- Rodapé Moderno -->
-    <footer class="footer py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="footer-brand">
-                        <img src="img/logo.png" alt="Engie Solar" style="width: 200px; height: auto;" class="footer-logo">
-                        <p class="mt-3">Soluções completas em energia solar fotovoltaica para residências, empresas e usinas de investimentos.</p>
-                    </div>
-                    <div class="footer-social mt-4">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
+<footer class="footer py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="footer-brand">
+                    <!-- ID para o logo do rodapé -->
+                    <img src="img/logo.png" alt="Engie Solar" style="width: 200px; height: auto;" class="footer-logo" id="footer-logo">
+                    <!-- ID para a descrição -->
+                    <p class="mt-3" id="footer-description">Soluções completas em energia solar fotovoltaica para residências, empresas e usinas de investimentos.</p>
                 </div>
-                <div class="col-md-2 col-6 mb-4 mb-md-0">
-                    <h4 class="footer-title">Links Rápidos</h4>
-                    <ul class="footer-links">
-                        <li><a href="#sobre">Sobre nós</a></li>
-                        <li><a href="#solucoes">Soluções</a></li>
-                        <li><a href="#projetos">Projetos</a></li>
-                        <li><a href="#depoimentos">Depoimentos</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-2 col-6 mb-4 mb-md-0">
-                    <h4 class="footer-title">Serviços</h4>
-                    <ul class="footer-links">
-                        <li>Residencial</li>
-                        <li>Empresarial</li>
-                        <li>Agronegócio</li>
-                        <li>Manutenção</li>
-                        <li>Monitoramento</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p>Receba novidades e ofertas exclusivas diretamente no seu e-mail.</p>
-                    <form class="footer-newsletter mt-3">
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Seu e-mail" required>
-                            <button class="btn btn-warning" type="submit">Inscrever</button>
-                        </div>
-                    </form>
-                    <div class="mt-4">
-                        <p class="mb-1"><i class="fas fa-phone-alt me-2"></i> (17) 98146-2112</p>
-                        <p><i class="fas fa-envelope me-2"></i> contato@engiesolar.com.br</p>
-                    </div>
+                <!-- ID para o container dos links de redes sociais -->
+                <div class="footer-social mt-4" id="footer-social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
-            <hr class="mt-4 mb-4">
-            <div class="row">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <p class="mb-0">&copy; 2025 Engie Solar. Todos os direitos reservados.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="#" class="footer-policy-link">Política de Privacidade</a>
-                    <a href="#" class="footer-policy-link">Termos de Uso</a>
+            <div class="col-md-2 col-6 mb-4 mb-md-0">
+                <!-- ID para o container de "Links Rápidos" -->
+                <h4 class="footer-title" id="footer-quick-links-title">Links Rápidos</h4>
+                <ul class="footer-links" id="footer-quick-links-list">
+                    <li><a href="#sobre">Sobre nós</a></li>
+                    <li><a href="#solucoes">Soluções</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-6 mb-4 mb-md-0">
+                <!-- ID para o container de "Serviços" -->
+                <h4 class="footer-title" id="footer-services-title">Serviços</h4>
+                <ul class="footer-links" id="footer-services-list">
+                    <li>Residencial</li>
+                    <li>Empresarial</li>
+                    <li>Agronegócio</li>
+                    <li>Manutenção</li>
+                    <li>Monitoramento</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <!-- IDs para a seção de Newsletter -->
+                <h4 class="footer-title" id="footer-newsletter-title">Newsletter</h4>
+                <p id="footer-newsletter-text">Receba novidades e ofertas exclusivas diretamente no seu e-mail.</p>
+                <form class="footer-newsletter mt-3">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Seu e-mail" required>
+                        <button class="btn btn-warning" type="submit">Inscrever</button>
+                    </div>
+                </form>
+                <div class="mt-4">
+                    <!-- ID para o telefone -->
+                    <p class="mb-1" id="footer-phone"><i class="fas fa-phone-alt me-2"></i> (17) 98146-2112</p>
                 </div>
             </div>
         </div>
-    </footer>
+        <hr class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <!-- ID para o texto de copyright -->
+                <p class="mb-0" id="footer-copyright">&copy; 2025 Engie Solar. Todos os direitos reservados.</p>
+            </div>
+            <div class="col-md-6 text-md-end" id="footer-policy-links">
+                <!-- IDs individuais para os links de política -->
+                <a href="#" class="footer-policy-link" id="footer-privacy-link">Política de Privacidade</a>
+                <a href="#" class="footer-policy-link" id="footer-terms-link">Termos de Uso</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
 
     <!-- WhatsApp Flutuante -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/5567999520449" target="_blank">
+        <a href="https://wa.me/5517981462112" target="_blank">
             <i class="fab fa-whatsapp"></i>
             <span class="whatsapp-text">Fale conosco</span>
         </a>
@@ -1817,10 +1816,75 @@ if (document.readyState === 'loading') {
     });
   }
 
-  document.addEventListener('DOMContentLoaded', carregarDepoimentos);
+  document.addEventListener('DOMContentLoaded', () => {
+  carregarDepoimentos();
+  carregarSolucoes();
+  carregarDiferenciais();
+  carregarHeader();
+  carregarFooter();
+});
+
 </script>
 
+<script>
+     // --- NOVO: Função para carregar Header via API ---
+    async function carregarHeader() {
+        try {
+            const res = await fetch('/api/header');
+            if (!res.ok) throw new Error('Erro na API do Header');
+            const data = await res.json();
+            if (!data) return;
 
+            if (data.logo_url) document.getElementById('header-logo').src = data.logo_url;
+            if (data.botao_texto) document.getElementById('header-button').textContent = data.botao_texto;
+            if (data.botao_url) document.getElementById('header-button').href = data.botao_url;
+
+            const linksContainer = document.getElementById('header-links');
+            let linksHtml = '';
+            for (let i = 1; i <= 5; i++) { // Assumindo até 5 links
+                const texto = data[`link_${i}_texto`];
+                const url = data[`link_${i}_url`];
+                if (texto && url) {
+                    linksHtml += `<li class="nav-item"><a class="nav-link" href="${url}">${texto}</a></li>`;
+                }
+            }
+            if (linksHtml) linksContainer.innerHTML = linksHtml;
+
+        } catch (err) {
+            console.error('Falha ao carregar Header:', err);
+        }
+    }
+
+</script>
+
+<script>
+    // --- NOVO: Função para carregar Footer via API ---
+    async function carregarFooter() {
+        try {
+            const res = await fetch('/api/footer');
+            if (!res.ok) throw new Error('Erro na API do Footer');
+            const data = await res.json();
+            if (!data) return;
+
+            if (data.logo_url) document.getElementById('footer-logo').src = data.logo_url;
+            if (data.descricao) document.getElementById('footer-description').textContent = data.descricao;
+            if (data.copyright_texto) document.getElementById('footer-copyright').textContent = data.copyright_texto;
+            if (data.contato_telefone) document.getElementById('footer-phone').innerHTML = `<i class="fas fa-phone-alt me-2"></i> ${data.contato_telefone}`;
+            
+            // Links de redes sociais
+            const socialContainer = document.getElementById('footer-social-links');
+            let socialHtml = '';
+            if (data.link_facebook) socialHtml += `<a href="${data.link_facebook}" class="social-link"><i class="fab fa-facebook-f"></i></a>`;
+            if (data.link_instagram) socialHtml += `<a href="${data.link_instagram}" class="social-link"><i class="fab fa-instagram"></i></a>`;
+            if (data.link_youtube) socialHtml += `<a href="${data.link_youtube}" class="social-link"><i class="fab fa-youtube"></i></a>`;
+            if (data.link_linkedin) socialHtml += `<a href="${data.link_linkedin}" class="social-link"><i class="fab fa-linkedin-in"></i></a>`;
+            if (socialHtml) socialContainer.innerHTML = socialHtml;
+
+        } catch (err) {
+            console.error('Falha ao carregar Footer:', err);
+        }
+    }
+</script>
 
 
 
@@ -1842,37 +1906,41 @@ if (document.readyState === 'loading') {
     }
   }
 
-  document.addEventListener('DOMContentLoaded', carregarVisao);
 </script>
 
 <script>
 async function carregarDiferenciais() {
-  const fallback = {
-    subtitulo_1: 'ENERGIA SOLAR É PARA TODOS',
-    texto_1: 'É para todos! Produza sua própria energia e pare de depender das fornecedoras convencionais.',
-    subtitulo_2: '100% LIMPO E RENOVÁVEL',
-    texto_2: 'Emissão Zero de CO2 e fonte inesgotável. Abrace o sol e faça sua parte, o planeta agradece.',
-    subtitulo_3: 'USINAS DE INVESTIMENTOS',
-    texto_3: 'Sua terra passa a gerar renda com energia solar, aumentando sua rentabilidade e valorização no mercado.'
-  };
-
   const icones = ['fa-solar-panel', 'fa-leaf', 'fa-sun'];
 
   try {
     const res = await fetch('/api/diferenciais');
     const raw = await res.json();
-    const isValido = raw && typeof raw === 'object' && raw.subtitulo_1;
-    const data = { ...fallback, ...(isValido ? raw : {}) };
+    console.log(raw)
 
+    const isValido =
+      raw &&
+      typeof raw === 'object' &&
+      raw.subtitulo_1 &&
+      raw.texto_1 &&
+      raw.subtitulo_2 &&
+      raw.texto_2 &&
+      raw.subtitulo_3 &&
+      raw.texto_3 &&
+      raw.titulo;
+
+    if (!isValido) {
+      console.error('[X] Dados inválidos recebidos da API.');
+      return;
+    }
+    console.log('visao_raw' + '' + raw)
     const container = document.querySelector('.features-section .row');
     const titleDiferenciais = document.querySelector('#diferenciais-title');
-    container.innerHTML = '';
-    titleDiferenciais.innerText = data['titulo'];
-
+    container.innerHTML = '';   
+    titleDiferenciais.innerText = raw.titulo;
 
     for (let i = 1; i <= 3; i++) {
-      const titulo = data[`subtitulo_${i}`];
-      const texto = data[`texto_${i}`];
+      const titulo = raw[`subtitulo_${i}`];
+      const texto = raw[`texto_${i}`];
 
       const card = `
         <div class="col-md-4 mb-4">
@@ -1885,26 +1953,11 @@ async function carregarDiferenciais() {
       container.innerHTML += card;
     }
   } catch (err) {
-    console.error('[X] Falha ao carregar diferenciais, usando fallback.', err);
-    const container = document.querySelector('.features-section .row');
-    container.innerHTML = '';
-
-    for (let i = 1; i <= 3; i++) {
-      const titulo = fallback[`subtitulo_${i}`];
-      const texto = fallback[`texto_${i}`];
-
-      const card = `
-        <div class="col-md-4 mb-4">
-          <div class="feature-card" data-aos="fade-up">
-            <div class="feature-icon"><i class="fas ${icones[i - 1]}"></i></div>
-            <h3>${titulo}</h3>
-            <p style="font-weight: 500;">${texto}</p>
-          </div>
-        </div>`;
-      container.innerHTML += card;
-    }
-  }
+    console.error('[X] Erro ao buscar diferenciais da API:', err);
+    alert('erro')
 }
+}
+
 
 async function carregarSolucoes() {
   console.log('⏳ Iniciando carregamento de soluções...');
@@ -1944,10 +1997,8 @@ async function carregarSolucoes() {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  carregarDiferenciais();
-  carregarSolucoes();
-});
+
+
 
 </script>
   
@@ -1960,7 +2011,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const projetos = await res.json();
       const container = document.querySelector('.projects-section .grid');
       container.innerHTML = '';
-
+      console.log(projetos)
       projetos.forEach(p => {
         const card = `
           <div class="col-md-4 mb-4 grid-item ${p.tipo}">
@@ -1986,7 +2037,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.addEventListener('DOMContentLoaded', carregarProjetos);
+  document.addEventListener('DOMContentLoaded', function () {
+        carregarHeader();
+        carregarFooter();
+        carregarVisao();
+        carregarDiferenciais();
+        carregarSolucoes();
+        carregarProjetos();
+        carregarDepoimentos();
+});
+
+
 </script>
 
 <!-- 5. Seus scripts customizados por último -->
