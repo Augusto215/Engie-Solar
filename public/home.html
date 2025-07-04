@@ -380,21 +380,21 @@
 
 
 <!-- ALTERNATIVA: Hero Section com background-image ao invés de <img> -->
-<section class="hero-section-alt d-flex flex-column justify-content-center align-items-center">
+<section class="hero-section-alt d-flex flex-column justify-content-center align-items-center" id="hero-section">
     <div class="container mobile-main">
         <div class="row  align-items-center">
             <div class="col-lg-8 mx-auto text-center text-white">
-                <h1 class="display-3 fw-bold mb-3 hero-title" data-aos="fade-up">USE A ENERGIA AO SEU FAVOR</h1>
-                <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200" id="heroDescription">Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!</p>
+                <h1 class="display-3 fw-bold mb-3 hero-title" data-aos="fade-up" id="hero-title">USE A ENERGIA AO SEU FAVOR</h1>
+                <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200" id="hero-description">Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!</p>
                 <div class="d-flex justify-content-center gap-3">
-                    <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">FALE CONOSCO</a>
-                    <a href="#calculadora" class="btn btn-outline-light btn-lg" data-aos="fade-up" data-aos-delay="500">VEJA MAIS</a>
+                    <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;" id="hero-btn-principal">FALE CONOSCO</a>
+                    <a href="#calculadora" class="btn btn-outline-light btn-lg" data-aos="fade-up" data-aos-delay="500" id="hero-btn-secundario">VEJA MAIS</a>
                 </div>
             </div>
         </div>
     </div>
-    
 </section>
+
 
 
 <!-- JAVASCRIPT - Adicione antes do </body> -->
@@ -478,10 +478,10 @@ if (document.readyState === 'loading') {
                 <div class="stat-item" data-aos="fade-up">
                     <i class="fas fa-solar-panel"></i>
                     <div class="counter-container">
-                        <span class="counter" data-target="500">0</span>
-                        <span class="counter-suffix">+</span>
+                        <span class="counter" id="stats-projetos-valor" data-target="500">0</span>
+                        <span class="counter-suffix" id="stats-projetos-sufixo">+</span>
                     </div>
-                    <p>Projetos instalados</p>
+                    <p id="stats-projetos-titulo">Projetos instalados</p>
                 </div>
             </div>
 
@@ -490,10 +490,10 @@ if (document.readyState === 'loading') {
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-bolt"></i>
                     <div class="counter-container">
-                        <span class="counter" data-target="5000">0</span>
-                        <span class="counter-suffix">kWp</span>
+                        <span class="counter" id="stats-potencia-valor" data-target="5000">0</span>
+                        <span class="counter-suffix" id="stats-potencia-sufixo">kWp</span>
                     </div>
-                    <p>Potência instalada</p>
+                    <p id="stats-potencia-titulo">Potência instalada</p>
                 </div>
             </div>
 
@@ -502,10 +502,10 @@ if (document.readyState === 'loading') {
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
                     <i class="fas fa-leaf"></i>
                     <div class="counter-container">
-                        <span class="counter" data-target="2500">0</span>
-                        <span class="counter-suffix">ton</span>
+                        <span class="counter" id="stats-co2-valor" data-target="2500">0</span>
+                        <span class="counter-suffix" id="stats-co2-sufixo">ton</span>
                     </div>
-                    <p>CO₂ evitado por ano</p>
+                    <p id="stats-co2-titulo">CO₂ evitado por ano</p>
                 </div>
             </div>
         </div>
@@ -519,9 +519,7 @@ if (document.readyState === 'loading') {
     position: relative;
     height: 100vh;
     min-height: 600px;
-    background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)),
-        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+   
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1520,22 +1518,16 @@ if (document.readyState === 'loading') {
                                 <p>(17) 98146-2112</p>
                             </div>
                         </div>
-                      
+    
                         <div class="social-media mt-4">
                             <h4>Redes Sociais</h4>
                             <div class="d-flex mt-3">
-                                <a href="https://www.facebook.com/people/Engie-Solar/100086647774389/" class="social-link">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
+                        
                                 <a href="https://www.instagram.com/engiesolar/" class="social-link">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="#" class="d-none social-link">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                                <a href="#" class="d-none social-link">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
+                          
+                
                             </div>
                         </div>
                     </div>
@@ -1604,17 +1596,8 @@ if (document.readyState === 'loading') {
                 </div>
                 <!-- ID para o container dos links de redes sociais -->
                 <div class="footer-social mt-4" id="footer-social-links">
-                    <a href="#" class="social-link">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-link">
+                    <a href="https://www.instagram.com/engiesolar/" class="social-link">
                         <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
             </div>
@@ -1858,6 +1841,39 @@ if (document.readyState === 'loading') {
 </script>
 
 <script>
+    async function carregarEstatisticas() {
+    try {
+        const res = await fetch('/api/estatisticas');
+        const data = await res.json();
+        if (!data) return;
+
+        // Projetos Instalados
+        if (data.projetos_instalados_valor) document.getElementById('stats-projetos-valor').textContent = data.projetos_instalados_valor;
+        if (data.projetos_instalados_sufixo) document.getElementById('stats-projetos-sufixo').textContent = data.projetos_instalados_sufixo;
+        if (data.projetos_instalados_titulo) document.getElementById('stats-projetos-titulo').textContent = data.projetos_instalados_titulo;
+
+        // Potência Instalada
+        if (data.potencia_instalada_valor) document.getElementById('stats-potencia-valor').textContent = data.potencia_instalada_valor;
+        if (data.potencia_instalada_sufixo) document.getElementById('stats-potencia-sufixo').textContent = data.potencia_instalada_sufixo;
+        if (data.potencia_instalada_titulo) document.getElementById('stats-potencia-titulo').textContent = data.potencia_instalada_titulo;
+
+        // CO2 Evitado
+        if (data.co2_evitado_valor) document.getElementById('stats-co2-valor').textContent = data.co2_evitado_valor;
+        if (data.co2_evitado_sufixo) document.getElementById('stats-co2-sufixo').textContent = data.co2_evitado_sufixo;
+        if (data.co2_evitado_titulo) document.getElementById('stats-co2-titulo').textContent = data.co2_evitado_titulo;
+
+        // Opcional: Se você tiver uma função de contador/animação, chame-a aqui
+        // Por exemplo, se 'initCounters' for a função que anima os números:
+        // initCounters(); 
+
+    } catch (err) {
+        console.error('Falha ao carregar Estatísticas:', err);
+    }
+}
+
+</script>
+
+<script>
     // --- NOVO: Função para carregar Footer via API ---
     async function carregarFooter() {
         try {
@@ -1874,16 +1890,87 @@ if (document.readyState === 'loading') {
             // Links de redes sociais
             const socialContainer = document.getElementById('footer-social-links');
             let socialHtml = '';
-            if (data.link_facebook) socialHtml += `<a href="${data.link_facebook}" class="social-link"><i class="fab fa-facebook-f"></i></a>`;
+            // Se você tem Facebook e YouTube no seu HTML original, adicione-os aqui também
+            // if (data.link_facebook) socialHtml += `<a href="${data.link_facebook}" class="social-link"><i class="fab fa-facebook-f"></i></a>`;
             if (data.link_instagram) socialHtml += `<a href="${data.link_instagram}" class="social-link"><i class="fab fa-instagram"></i></a>`;
-            if (data.link_youtube) socialHtml += `<a href="${data.link_youtube}" class="social-link"><i class="fab fa-youtube"></i></a>`;
-            if (data.link_linkedin) socialHtml += `<a href="${data.link_linkedin}" class="social-link"><i class="fab fa-linkedin-in"></i></a>`;
+            // if (data.link_youtube) socialHtml += `<a href="${data.link_youtube}" class="social-link"><i class="fab fa-youtube"></i></a>`;
+          
             if (socialHtml) socialContainer.innerHTML = socialHtml;
+
+            // NOVO: Links de Serviços
+            const servicesList = document.getElementById('footer-services-list');
+            let servicesHtml = '';
+            // Loop para adicionar os serviços dinamicamente
+            for (let i = 1; i <= 5; i++) { // Ajuste o loop conforme o número de campos servico_X_texto que você criou
+                const serviceText = data[`servico_${i}_texto`];
+                if (serviceText) {
+                    servicesHtml += `<li>${serviceText}</li>`;
+                }
+            }
+            if (servicesHtml) servicesList.innerHTML = servicesHtml;
 
         } catch (err) {
             console.error('Falha ao carregar Footer:', err);
         }
     }
+</script>
+
+
+<script>
+async function carregarHero() {
+    try {
+        const res = await fetch('/api/hero');
+        const data = await res.json();
+        if (!data) return;
+
+        // Atualiza o título
+        if (data.titulo) document.getElementById('hero-title').textContent = data.titulo;
+
+        // Atualiza os botões
+        if (data.botao_principal_texto) document.getElementById('hero-btn-principal').textContent = data.botao_principal_texto;
+        if (data.botao_principal_url) document.getElementById('hero-btn-principal').href = data.botao_principal_url;
+        if (data.botao_secundario_texto) document.getElementById('hero-btn-secundario').textContent = data.botao_secundario_texto;
+        if (data.botao_secundario_url) document.getElementById('hero-btn-secundario').href = data.botao_secundario_url;
+
+        // Atualiza a imagem de fundo via JavaScript
+        const heroSection = document.getElementById('hero-section');
+        if (heroSection && data.background_image_url) {
+            // Mantém o gradiente e adiciona a imagem
+            heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('${data.background_image_url}')`;
+        }
+
+        // Lógica para as descrições rotativas
+        const frasesDescritivas = [];
+        for (let i = 1; i <= 6; i++) {
+            if (data[`descricao_${i}`]) {
+                frasesDescritivas.push(data[`descricao_${i}`]);
+            }
+        }
+        
+        // Substitui o array original e reinicia a rotação
+        if (frasesDescritivas.length > 0) {
+            // Reatribui o array global de frasesDescritivas
+            // (Isso depende de como você declarou 'frasesDescritivas' globalmente.
+            // Se ela está dentro de um escopo, precisará ser acessível globalmente ou passada.)
+            // Por simplicidade, vamos assumir que 'frasesDescritivas' é global ou que você a passará.
+            // Se não for global, você precisará ajustar a função 'trocarFrase' para aceitar o array.
+            // Por enquanto, vamos atualizar o elemento diretamente.
+            const heroDescriptionElement = document.getElementById('hero-description');
+            if (heroDescriptionElement) {
+                // Para a rotação, você precisará adaptar sua função 'trocarFrase'
+                // para que ela use este novo array. Por agora, apenas a primeira será exibida.
+                heroDescriptionElement.textContent = frasesDescritivas[0];
+                // Para fazer a rotação, você precisará modificar a função 'trocarFrase'
+                // para que ela use este novo array 'frasesDescritivas' carregado da API.
+                // Isso pode exigir que 'frasesDescritivas' seja uma variável global
+                // ou que a função 'trocarFrase' seja refatorada para aceitar o array.
+            }
+        }
+
+    } catch (err) {
+        console.error('Falha ao carregar Hero Section:', err);
+    }
+}
 </script>
 
 
@@ -2039,6 +2126,8 @@ async function carregarSolucoes() {
 
   document.addEventListener('DOMContentLoaded', function () {
         carregarHeader();
+        carregarHero();
+        carregarEstatisticas();
         carregarFooter();
         carregarVisao();
         carregarDiferenciais();

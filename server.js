@@ -17,7 +17,7 @@ dotenv.config()
 const app = express()
 const upload = multer({ dest: 'uploads/' })
 const BUCKET = 'engie-projetos'
-const tables = ['engie_depoimentos', 'engie_diferenciais', 'engie_projetos', 'engie_visao', 'engie_solucoes', 'engie_header', 'engie_footer']
+const tables = ['engie_header', 'engie_footer', 'engie_hero', 'engie_estatisticas', 'engie_depoimentos', 'engie_diferenciais', 'engie_projetos', 'engie_visao', 'engie_solucoes']
 
 // Configura EJS
 app.set('view engine', 'ejs')
@@ -62,7 +62,12 @@ app.get('/api/footer', async (req, res) => {
   res.json(data || {});
 });
 
-
+// API para Estatisticas
+app.get('/api/estatisticas', async (req, res) => {
+  const { data, error } = await supabase.from('engie_estatisticas').select('*').limit(1).single();
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data || {});
+});
 
 // API pública para diferenciais
 app.get('/api/header', async (req, res) => {
@@ -81,6 +86,14 @@ app.get('/api/header', async (req, res) => {
     res.status(500).json({ error: err.message })
   }
 })
+
+
+app.get('/api/hero', async (req, res) => {
+  const { data, error } = await supabase.from('engie_hero').select('*').limit(1).single();
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data || {});
+});
+
 
 
 // API pública para diferenciais

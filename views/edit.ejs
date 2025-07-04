@@ -35,12 +35,12 @@
         <div class="max-w-4xl mx-auto">
           <div class="bg-gray-900 border border-gray-800 rounded-lg">
             <div class="p-6">
-              <!-- Formulário principal que engloba tudo -->
+                            <!-- Formulário principal que engloba tudo -->
               <form method="POST" action="/edit/<%= tabela %>/<%= section.id %>" class="space-y-6">
                 
                 <% for (var key in section ) { %>
                   <% if (key === 'id' || key === 'created_at') continue; %>
-                  <% const isImageField = key.toLowerCase().includes('imagem') || key.toLowerCase().includes('logo'); %>
+                  <% const isImageField = key.toLowerCase().includes('imagem') || key.toLowerCase().includes('logo') || key.toLowerCase().includes('background_image_url'); %>
 
                   <% if (isImageField) { %>
                     <!-- Seção para Campos de Imagem -->
@@ -112,7 +112,7 @@
     </div>
   </div>
 
-  <script>
+    <script>
     async function enviarImagem(input, tabela, campo, id) {
       const file = input.files[0];
       if (!file) return;
@@ -121,7 +121,8 @@
       formData.append('imagem', file);
 
       // Feedback visual de que o upload está acontecendo
-      const uploadButton = input.nextElementSibling;
+      const uploadButton = input.nextElementSibling; // Este é o botão "Alterar Imagem"
+      const originalButtonHtml = uploadButton.innerHTML; // Salva o HTML original do botão
       uploadButton.disabled = true;
       uploadButton.innerHTML = '<i class="bi bi-arrow-repeat animate-spin mr-2"></i>Enviando...';
 
@@ -153,7 +154,7 @@
             // Se era uma div "Sem imagem", substitui por uma tag <img>
             const img = document.createElement('img');
             img.src = `${imageUrl}?t=${new Date().getTime()}`;
-            img.className = "w-40 h-40 object-cover rounded-lg border border-gray-600";
+            img.className = "w-40 h-40 object-cover rounded-lg border border-gray-600"; // Classes do preview
             img.id = `preview-${campo}`;
             preview.replaceWith(img);
           }
@@ -167,9 +168,10 @@
       } finally {
         // Restaura o botão de upload
         uploadButton.disabled = false;
-        uploadButton.innerHTML = '<i class="bi bi-upload mr-2"></i>Alterar Imagem';
+        uploadButton.innerHTML = originalButtonHtml; // Restaura o HTML original
       }
     }
   </script>
+
 </body>
 </html>

@@ -28,9 +28,14 @@
           <i class="bi bi-window-desktop"></i>
           <span>Header</span>
         </button>
+        <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('hero')">
+          <i class="bi bi-star"></i> <!-- Ícone de estrela para Hero -->
+          <span>Hero Section</span>
+        </button>
+
         <!-- Botão Footer (CORRIGIDO: Ordem e sem 'active') -->
         <button class="tab-btn w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors" onclick="showTab('footer')">
-          <i class="bi bi-window-bottom"></i>
+          <i class="bi bi-gear"></i> <!-- Ícone novo -->
           <span>Footer</span>
         </button>
         <!-- Botão Depoimentos (CORRIGIDO: Sem 'active') -->
@@ -113,27 +118,27 @@
             </div>
           </div>
         </div>
-
-        <!-- Footer Tab (CORRIGIDO: Sem 'active') -->
-        <div id="footer" class="tab-content">
+        
+        <!-- NOVO: Hero Section Tab com Layout Horizontal -->
+        <div id="hero" class="tab-content">
           <div class="bg-gray-900 border border-gray-800 rounded-lg">
             <div class="p-6 border-b border-gray-800">
-              <h3 class="text-xl font-semibold text-white">Footer</h3>
+              <h3 class="text-xl font-semibold text-white">Hero Section</h3>
             </div>
             <div class="p-6 overflow-x-auto">
-              <% if (!data.engie_footer || !data.engie_footer.length) { %>
+              <% if (!data.engie_hero || !data.engie_hero.length) { %>
                 <div class="text-gray-400 text-center py-8">
-                  Nenhum conteúdo disponível para o Footer.
+                  Nenhum conteúdo disponível para a Hero Section.
                 </div>
               <% } else { %>
                 <div class="space-y-4">
                   <div class="grid grid-cols-[repeat(15,minmax(150px,1fr))] gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
-                    <% Object.keys(data.engie_footer[0]).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
+                    <% Object.keys(data.engie_hero[0]).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
                       <div class="truncate"><%= campo %></div>
                     <% }) %>
                     <div>Ações</div>
                   </div>
-                  <% data.engie_footer.forEach(item => { %>
+                  <% data.engie_hero.forEach(item => { %>
                     <div class="grid grid-cols-[repeat(15,minmax(150px,1fr))] gap-4 py-4 border-b border-gray-800 text-sm items-start">
                       <% Object.keys(item).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
                         <div class="text-gray-300 break-words">
@@ -145,7 +150,7 @@
                         </div>
                       <% }) %>
                       <div>
-                        <a href="/edit/engie_footer/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white whitespace-nowrap">
+                        <a href="/edit/engie_hero/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white whitespace-nowrap">
                           <i class="bi bi-pencil mr-2"></i> Editar
                         </a>
                       </div>
@@ -156,6 +161,138 @@
             </div>
           </div>
         </div>
+
+        <!-- NOVO: Estatísticas Tab com Layout Horizontal -->
+<div id="estatisticas" class="tab-content">
+  <div class="bg-gray-900 border border-gray-800 rounded-lg">
+    <div class="p-6 border-b border-gray-800">
+      <h3 class="text-xl font-semibold text-white">Estatísticas</h3>
+    </div>
+    <div class="p-6 overflow-x-auto">
+      <% if (!data.engie_estatisticas || !data.engie_estatisticas.length) { %>
+        <div class="text-gray-400 text-center py-8">
+          Nenhum conteúdo disponível para as Estatísticas.
+        </div>
+      <% } else { %>
+        <div class="space-y-4">
+          <div class="grid grid-cols-[repeat(9,minmax(150px,1fr))] gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+            <% Object.keys(data.engie_estatisticas[0]).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
+              <div class="truncate"><%= campo %></div>
+            <% }) %>
+            <div>Ações</div>
+          </div>
+          <% data.engie_estatisticas.forEach(item => { %>
+            <div class="grid grid-cols-[repeat(9,minmax(150px,1fr))] gap-4 py-4 border-b border-gray-800 text-sm items-start">
+              <% Object.keys(item).filter(k => k !== 'id' && k !== 'created_at').forEach(campo => { %>
+                <div class="text-gray-300 break-words">
+                  <%= item[campo] %>
+                </div>
+              <% }) %>
+              <div>
+                <a href="/edit/engie_estatisticas/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white whitespace-nowrap">
+                  <i class="bi bi-pencil mr-2"></i> Editar
+                </a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+        <!-- Footer Tab -->
+<div id="footer" class="tab-content">
+  <div class="bg-gray-900 border border-gray-800 rounded-lg">
+    <div class="p-6 border-b border-gray-800">
+      <h3 class="text-xl font-semibold text-white">Footer</h3>
+    </div>
+    <div class="p-6 overflow-x-auto">
+      <% if (!data.engie_footer || !data.engie_footer.length) { %>
+        <div class="text-gray-400 text-center py-8">
+          Nenhum conteúdo disponível para o Footer.
+        </div>
+      <% } else { %>
+        <div class="space-y-4">
+          <!-- Cabeçalho da Tabela -->
+          <div class="grid grid-cols-5 gap-4 pb-2 border-b border-gray-800 text-sm font-medium text-gray-300">
+            <div class="truncate">Logo</div>
+            <div class="truncate">Descrição</div>
+            <div class="truncate">Contato</div>
+            <div class="truncate">Redes Sociais</div>
+            <div class="truncate">Serviços</div>
+            <div class="truncate">Newsletter</div>
+            <div class="truncate">Copyright</div>
+            <div class="truncate">Ações</div>
+          </div>
+          
+          <!-- Linha de Dados -->
+          <% data.engie_footer.forEach(item => { %>
+            <div class="grid grid-cols-5 gap-4 py-4 border-b border-gray-800 text-sm items-start">
+              <!-- Coluna Logo -->
+              <div class="text-gray-300 break-words">
+                <% if (item.logo_url) { %>
+                  <img src="<%= item.logo_url %>" class="w-16 h-16 object-contain rounded-lg" alt="Logo">
+                <% } else { %>
+                  N/A
+                <% } %>
+              </div>
+
+              <!-- Coluna Descrição -->
+              <div class="text-gray-300 break-words">
+                <%= item.descricao || 'N/A' %>
+              </div>
+
+              <!-- Coluna Contato -->
+              <div class="text-gray-300 break-words">
+                <p><%= item.contato_telefone || 'N/A' %></p>
+              </div>
+
+              <!-- Coluna Redes Sociais -->
+              <div class="text-gray-300 break-words flex flex-col space-y-1">
+                <% if (item.link_facebook) { %><a href="<%= item.link_facebook %>" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-facebook-f"></i> Facebook</a><% } %>
+                <% if (item.link_instagram) { %><a href="<%= item.link_instagram %>" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-instagram"></i> Instagram</a><% } %>
+                <% if (item.link_youtube) { %><a href="<%= item.link_youtube %>" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-youtube"></i> YouTube</a><% } %>
+                <% if (item.link_linkedin) { %><a href="<%= item.link_linkedin %>" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-linkedin-in"></i> LinkedIn</a><% } %>
+                <% if (!item.link_facebook && !item.link_instagram && !item.link_youtube && !item.link_linkedin) { %>N/A<% } %>
+              </div>
+
+              <!-- Coluna Serviços -->
+              <div class="text-gray-300 break-words flex flex-col space-y-1">
+                <% for (let i = 1; i <= 5; i++) { %>
+                  <% const servico = item[`servico_${i}_texto`]; %>
+                  <% if (servico) { %>
+                    <span><%= servico %></span>
+                  <% } %>
+                <% } %>
+                <% if (!item.servico_1_texto && !item.servico_2_texto && !item.servico_3_texto && !item.servico_4_texto && !item.servico_5_texto) { %>N/A<% } %>
+              </div>
+
+              <!-- Coluna Newsletter -->
+              <div class="text-gray-300 break-words">
+                <p class="font-medium"><%= item.newsletter_titulo || 'N/A' %></p>
+                <p class="text-xs text-gray-400"><%= item.newsletter_texto || 'N/A' %></p>
+              </div>
+
+              <!-- Coluna Copyright -->
+              <div class="text-gray-300 break-words">
+                <%= item.copyright_texto || 'N/A' %>
+              </div>
+
+              <!-- Coluna Ações -->
+              <div>
+                <a href="/edit/engie_footer/<%= item.id %>" class="inline-flex items-center px-3 py-2 rounded-md border border-gray-600 text-gray-300 text-sm hover:text-white whitespace-nowrap">
+                  <i class="bi bi-pencil mr-2"></i> Editar
+                </a>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
 
         <!-- Depoimentos Tab (CORRIGIDO: Sem 'active') -->
         <div id="depoimentos" class="tab-content">
@@ -242,6 +379,8 @@
             </div>
           </div>
         </div>
+
+        
 
         <!-- Projetos Tab -->
         <div id="projetos" class="tab-content">
