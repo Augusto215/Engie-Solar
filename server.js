@@ -6,15 +6,27 @@ import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import session from 'express-session'
+
+
 
 // Corrige __dirname para ES Modules
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
+
+
 // Carrega variáveis de ambiente
 dotenv.config()
 
 const app = express()
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'chave-secreta', // coloque isso no .env
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // true só em produção com HTTPS
+}))
+
 const upload = multer({ dest: 'uploads/' })
 const BUCKET = 'engie-projetos'
 const tables = ['engie_header', 'engie_footer', 'engie_hero', 'engie_estatisticas', 'engie_depoimentos', 'engie_diferenciais', 'engie_projetos', 'engie_visao', 'engie_solucoes']
@@ -33,7 +45,8 @@ app.get('/', (req, res) => {
 })
 
 // Painel principal com dados do Supabase
-app.get('/admin', async (req, res) => {
+app.get('/admin', requireAuth, async (req, res) => {
+
   const data = {}
 
   for (const table of tables) {
@@ -47,6 +60,33 @@ app.get('/admin', async (req, res) => {
 })
 
 // No seu index.js, adicione estas rotas:
+
+// Página de login
+app.get('/login', (req, res) => {
+  res.render('login', { error: null })
+})
+
+// Processa login
+app.post('/login', (req, res) => {
+  const { username, password } = req.body
+
+  const validUser = process.env.ADMIN_USER || 'engiesolarvtp'
+  const validPass = process.env.ADMIN_PASS || 'piau3w34vtp'
+
+  if (username === validUser && password === validPass) {
+    req.session.authenticated = true
+    return res.redirect('/admin')
+  }
+
+  res.render('login', { error: 'Usuário ou senha inválidos' })
+})
+
+
+function requireAuth(req, res, next) {
+  if (req.session.authenticated) return next()
+  return res.redirect('/login')
+}
+
 
 // API para Header
 app.get('/api/header', async (req, res) => {

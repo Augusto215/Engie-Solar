@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engie Solar</title>
-    
+    <link rel="icon" href="img/logo_url_1.ico" type="image/x-icon">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -81,7 +82,7 @@
                 </ul>
                 
                 <!-- ID para o botão de ação -->
-                <a href="#" class="btn btn-warning ms-3 franqueado-btn d-none d-lg-block" id="header-button" data-aos="fade-left" style="font-weight: 800;">Seja um franqueado</a>
+                <a href="https://wa.me/5517981462112" class="btn btn-warning ms-3 franqueado-btn d-lg-block" id="header-button" data-aos="fade-left" style="font-weight: 800;">Seja um franqueado</a>
             </div>
         </div>
     </nav>
@@ -92,6 +93,13 @@
 <!-- Hero Section com Imagem de Fundo -->
 
 <style>
+    @media(max-width:768px)
+    {
+        p
+        {
+            text-align: justify !important;
+        }
+    }
    .hero-section-alt {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
@@ -2021,7 +2029,10 @@ async function carregarDiferenciais() {
     }
     console.log('visao_raw' + '' + raw)
     const container = document.querySelector('.features-section .row');
-    const titleDiferenciais = document.querySelector('#diferenciais-title');
+if (!container) {
+  console.error('[ERRO] Container .features-section .row não encontrado no DOM.');
+  return;
+}    const titleDiferenciais = document.querySelector('#diferenciais-title');
     container.innerHTML = '';   
     titleDiferenciais.innerText = raw.titulo;
 
@@ -2125,16 +2136,21 @@ async function carregarSolucoes() {
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-        carregarHeader();
-        carregarHero();
-        carregarEstatisticas();
-        carregarFooter();
-        carregarVisao();
+    carregarHeader();
+    carregarHero();
+    carregarEstatisticas();
+    carregarFooter();
+    carregarVisao();
+    carregarSolucoes();
+    carregarProjetos();
+    carregarDepoimentos();
+
+    // Aguarda renderização de todos os elementos antes de carregar diferenciais
+    setTimeout(() => {
         carregarDiferenciais();
-        carregarSolucoes();
-        carregarProjetos();
-        carregarDepoimentos();
+    }, 800); // ajuste para 1000ms se necessário
 });
+
 
 
 </script>
