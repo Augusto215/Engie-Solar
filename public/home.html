@@ -694,12 +694,12 @@ if (document.readyState === 'loading') {
     <!-- Seção de Diferenciais com Cards Modernos -->
     <section class="features-section py-5 bg-light">
         <div class="container">
-            <div class="section-header text-center" style="margin-bottom: 50px; padding-bottom: 20px;">
-    <h2 class="section-title" id="diferenciais-title" data-aos="fade-up" style="margin-bottom: 25px;">Nossos Diferenciais</h2>
+            <div class="section-header text-center" style=" padding-bottom: 20px;">
+    <h2 class="section-title" id="diferenciais-title" data-aos="fade-up">Nossos Diferenciais</h2>
 </div>
             <div class="features-row row">
                 <div class="col-md-4 mb-4">
-                    <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-solar-panel"></i>
                         </div>
@@ -708,7 +708,7 @@ if (document.readyState === 'loading') {
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card" >
                         <div class="feature-icon">
                             <i class="fas fa-leaf"></i>
                         </div>
@@ -717,7 +717,7 @@ if (document.readyState === 'loading') {
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-sun"></i>
                         </div>
@@ -2004,59 +2004,231 @@ async function carregarHero() {
 </script>
 
 <script>
-async function carregarDiferenciais() {
+async function carregarDiferenciais(tentativas = 3) {
+  console.log(`🔄 Carregando diferenciais (tentativa ${4 - tentativas}/3)...`);
+  
   const icones = ['fa-solar-panel', 'fa-leaf', 'fa-sun'];
 
   try {
+    // Verifica se o DOM está pronto
+    await waitForElement('.features-section .row');
+    await waitForElement('#diferenciais-title');
+    
+    console.log('📡 Fazendo requisição para /api/diferenciais...');
     const res = await fetch('/api/diferenciais');
-    const raw = await res.json();
-    console.log(raw)
-
-    const isValido =
-      raw &&
-      typeof raw === 'object' &&
-      raw.subtitulo_1 &&
-      raw.texto_1 &&
-      raw.subtitulo_2 &&
-      raw.texto_2 &&
-      raw.subtitulo_3 &&
-      raw.texto_3 &&
-      raw.titulo;
-
-    if (!isValido) {
-      console.error('[X] Dados inválidos recebidos da API.');
-      return;
+    
+    if (!res.ok) {
+      throw new Error(`❌ Erro HTTP: ${res.status} ${res.statusText}`);
     }
-    console.log('visao_raw' + '' + raw)
-    const container = document.querySelector('.features-section .row');
-if (!container) {
-  console.error('[ERRO] Container .features-section .row não encontrado no DOM.');
-  return;
-}    const titleDiferenciais = document.querySelector('#diferenciais-title');
-    container.innerHTML = '';   
-    titleDiferenciais.innerText = raw.titulo;
 
+    const raw = await res.json();
+    console.log('📦 Dados recebidos dos diferenciais:', raw);
+
+    // Validação mais flexível
+    if (!raw || typeof raw !== 'object') {
+      throw new Error('❌ Resposta inválida: dados não são um objeto');
+    }
+
+    // Verifica se tem pelo menos o título e um diferencial
+    if (!raw.titulo) {
+      throw new Error('❌ Campo "titulo" ausente na resposta');
+    }
+
+    // Busca elementos do DOM
+    const container = document.querySelector('.features-section .row');
+    const titleElement = document.querySelector('#diferenciais-title');
+    
+    if (!container) {
+      throw new Error('❌ Container .features-section .row não encontrado');
+    }
+    
+    if (!titleElement) {
+      throw new Error('❌ Elemento #diferenciais-title não encontrado');
+    }
+
+    // Atualiza o título
+    titleElement.textContent = raw.titulo;
+    console.log('✅ Título dos diferenciais atualizado:', raw.titulo);
+
+    // Limpa o container
+    container.innerHTML = '';
+
+    // Constrói os cards dos diferenciais
+    let cardsAdicionados = 0;
     for (let i = 1; i <= 3; i++) {
       const titulo = raw[`subtitulo_${i}`];
       const texto = raw[`texto_${i}`];
 
-      const card = `
-        <div class="col-md-4 mb-4">
-          <div class="feature-card" data-aos="fade-up">
-            <div class="feature-icon"><i class="fas ${icones[i - 1]}"></i></div>
-            <h3>${titulo}</h3>
-            <p style="font-weight: 500;">${texto}</p>
-          </div>
-        </div>`;
-      container.innerHTML += card;
+      if (titulo && texto) {
+        const card = `
+          <div class="col-md-4 mb-4">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="${i * 200}">
+              <div class="feature-icon">
+                <i class="fas ${icones[i - 1]}"></i>
+              </div>
+              <h3>${titulo}</h3>
+              <p style="font-weight: 500;">${texto}</p>
+            </div>
+          </div>`;
+        
+        container.innerHTML += card;
+        cardsAdicionados++;
+        console.log(`✅ Card ${i} adicionado: ${titulo}`);
+      } else {
+        console.warn(`⚠️ Diferencial ${i} incompleto - Título: ${titulo}, Texto: ${texto}`);
+      }
     }
+
+    if (cardsAdicionados === 0) {
+      throw new Error('❌ Nenhum card de diferencial foi adicionado');
+    }
+
+    // Reinicializa animações AOS se disponível
+    if (typeof AOS !== 'undefined') {
+      AOS.refresh();
+      console.log('🎭 Animações AOS atualizadas');
+    }
+
+    console.log(`✅ Diferenciais carregados com sucesso! ${cardsAdicionados} cards adicionados.`);
+    return true;
+
   } catch (err) {
-    console.error('[X] Erro ao buscar diferenciais da API:', err);
-    alert('erro')
-}
+    console.error(`❌ Erro ao carregar diferenciais:`, err);
+    
+    // Retry logic - tenta novamente se ainda há tentativas
+    if (tentativas > 1) {
+      console.log(`🔄 Tentando novamente em 2 segundos... (${tentativas - 1} tentativas restantes)`);
+      await sleep(2000);
+      return carregarDiferenciais(tentativas - 1);
+    } else {
+      console.error('❌ Todas as tentativas falharam. Carregando conteúdo fallback...');
+      carregarDiferenciaisFallback();
+      return false;
+    }
+  }
 }
 
+// Função auxiliar para esperar um elemento aparecer no DOM
+function waitForElement(selector, timeout = 5000) {
+  return new Promise((resolve, reject) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      resolve(element);
+      return;
+    }
 
+    const observer = new MutationObserver((mutations) => {
+      const element = document.querySelector(selector);
+      if (element) {
+        observer.disconnect();
+        resolve(element);
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // Timeout de segurança
+    setTimeout(() => {
+      observer.disconnect();
+      reject(new Error(`Timeout: Elemento ${selector} não encontrado em ${timeout}ms`));
+    }, timeout);
+  });
+}
+
+// Função auxiliar para sleep
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Conteúdo fallback caso a API falhe
+function carregarDiferenciaisFallback() {
+  console.log('🛡️ Carregando conteúdo fallback para diferenciais...');
+  
+  const container = document.querySelector('.features-section .row');
+  const titleElement = document.querySelector('#diferenciais-title');
+  
+  if (titleElement) {
+    titleElement.textContent = 'Nossos Diferenciais';
+  }
+  
+  if (container) {
+    container.innerHTML = `
+      <div class="col-md-4 mb-4">
+        <div class="feature-card" data-aos="fade-up">
+          <div class="feature-icon">
+            <i class="fas fa-solar-panel"></i>
+          </div>
+          <h3>ENERGIA SOLAR É PARA TODOS</h3>
+          <p style="font-weight: 500;">É para todos! Produza sua própria energia e pare de depender das fornecedoras convencionais.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3>100% LIMPO E RENOVÁVEL</h3>
+          <p style="font-weight: 500;">Emissão Zero de CO2 e fonte inesgotável. Abrace o sol e faça sua parte, o planeta agradece.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <i class="fas fa-sun"></i>
+          </div>
+          <h3>USINAS DE INVESTIMENTOS</h3>
+          <p style="font-weight: 500;">Sua terra passa a gerar renda com energia solar, aumentando sua rentabilidade e valorização no mercado.</p>
+        </div>
+      </div>`;
+  }
+}
+
+// Versão melhorada do DOMContentLoaded com sequenciamento
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('🚀 DOM carregado, iniciando carregamento de conteúdo...');
+    
+    // Carrega conteúdos em paralelo (que não dependem uns dos outros)
+    Promise.all([
+        carregarHeader(),
+        carregarHero(),
+        carregarEstatisticas(),
+        carregarFooter(),
+        carregarVisao(),
+        carregarSolucoes(),
+        carregarProjetos(),
+        carregarDepoimentos()
+    ]).then(() => {
+        console.log('✅ Conteúdos principais carregados');
+        
+        // Carrega diferenciais por último com um pequeno delay
+        setTimeout(() => {
+            carregarDiferenciais();
+        }, 1000);
+    }).catch(err => {
+        console.error('❌ Erro no carregamento inicial:', err);
+        // Mesmo com erro, tenta carregar diferenciais
+        setTimeout(() => {
+            carregarDiferenciais();
+        }, 2000);
+    });
+});
+
+// Também adiciona um listener para quando a página estiver completamente carregada
+window.addEventListener('load', function() {
+    console.log('🎯 Página completamente carregada');
+    
+    // Verifica se os diferenciais foram carregados, se não, tenta novamente
+    setTimeout(() => {
+        const container = document.querySelector('.features-section .row');
+        if (container && container.children.length === 0) {
+            console.log('⚠️ Diferenciais não carregados, tentando novamente...');
+            carregarDiferenciais();
+        }
+    }, 500);
+});
 async function carregarSolucoes() {
   console.log('⏳ Iniciando carregamento de soluções...');
 
@@ -2154,7 +2326,12 @@ async function carregarSolucoes() {
 
 
 </script>
-
+<style>
+    .feature-card 
+    {
+        opacity: 1 !important;
+    }
+</style>
 <!-- 5. Seus scripts customizados por último -->
 <script src="js/main.js"></script>
 <script src="js/animations.js"></script>
