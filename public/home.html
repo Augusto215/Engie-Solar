@@ -81,9 +81,17 @@
                     </li>
                 </ul>
                 
-                <!-- ID para o botão de ação -->
-                <a href="https://wa.me/5517981462112" class="btn btn-warning ms-3 franqueado-btn d-lg-block" id="header-button" data-aos="fade-left" style="font-weight: 800;">Seja um franqueado</a>
-            </div>
+                <a href="#" 
+                class="btn btn-warning ms-3 franqueado-btn d-lg-block" 
+                id="header-button" 
+                data-bs-toggle="modal" 
+                data-bs-target="#whatsappModal" 
+                data-aos="fade-left" 
+                style="font-weight: 800;">
+                Seja um franqueado
+             </a>
+             
+                                 </div>
         </div>
     </nav>
 </header>
@@ -388,15 +396,14 @@
 
 
 <!-- ALTERNATIVA: Hero Section com background-image ao invés de <img> -->
-<section class="hero-section-alt d-flex flex-column justify-content-center align-items-center" id="hero-section">
-    <div class="container mobile-main">
+<section class="hero-section-alt d-flex flex-column justify-content-center align-items-center" id="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url(&quot;https://slixymwrmifwomrjqsbk.supabase.co/storage/v1/object/public/engie-projetos/engie_hero/background_image_url_1.avif&quot;);">    <div class="container mobile-main">
         <div class="row  align-items-center">
             <div class="col-lg-8 mx-auto text-center text-white">
                 <h1 class="display-3 fw-bold mb-3 hero-title" data-aos="fade-up" id="hero-title">USE A ENERGIA AO SEU FAVOR</h1>
                 <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200" id="hero-description">Chega de sustos na conta de luz. Produza sua própria energia, economize todos os meses e ganhe mais liberdade financeira!</p>
                 <div class="d-flex justify-content-center gap-3">
-                    <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;" id="hero-btn-principal">FALE CONOSCO</a>
-                    <a href="#calculadora" class="btn btn-outline-light btn-lg" data-aos="fade-up" data-aos-delay="500" id="hero-btn-secundario">VEJA MAIS</a>
+                    <a href="#" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#whatsappModal">FALE CONOSCO</a>
+                    <a class="d-none" href="#calculadora" data-aos="fade-up" data-aos-delay="500" id="hero-btn-secundario">VEJA MAIS</a>
                 </div>
             </div>
         </div>
@@ -670,8 +677,10 @@ if (document.readyState === 'loading') {
 
                             Quer economizar de verdade? Fale com a gente e comece sua geração própria hoje.</p>
           <div class="text-center">
-            <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">ENTRE EM CONTATO</a>
-          </div>
+            <a href="#" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#whatsappModal" data-aos="fade-up" data-aos-delay="400" style="font-weight: 800;">
+                ENTRE EM CONTATO
+              </a>
+                        </div>
         </div>
       </div>
 
@@ -862,8 +871,9 @@ if (document.readyState === 'loading') {
                 </div>
             </div>
             <div class="text-center mt-5">
-                <a href="#contato" class="btn btn-warning btn-lg" data-aos="fade-up" style="font-weight: 800;">SOLICITE SEU ORÇAMENTO AGORA</a>
-            </div>
+                <a href="#" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#whatsappModal" data-aos="fade-up" style="font-weight: 800;">
+                    SOLICITE SEU ORÇAMENTO AGORA
+                  </a>
         </div>
     </section>
 
@@ -1017,7 +1027,7 @@ if (document.readyState === 'loading') {
                     </div>
                     <div class="testimonial-client">
                         <div class="client-avatar">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="João Silva">
+                            <img src="public/img/wpp1.jpeg" alt="João Silva">
                         </div>
                         <div class="client-info">
                             <h4>João Silva</h4>
@@ -1065,7 +1075,7 @@ if (document.readyState === 'loading') {
                     </div>
                     <div class="testimonial-client">
                         <div class="client-avatar">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Carlos Oliveira">
+                            <img src="public/img/wpp3.jpeg" alt="Carlos Oliveira">
                         </div>
                         <div class="client-info">
                             <h4>Carlos Oliveira</h4>
@@ -1151,10 +1161,12 @@ if (document.readyState === 'loading') {
         <!-- Call to Action -->
         <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="700">
             <p class="cta-text">Junte-se aos nossos clientes satisfeitos</p>
-            <a href="https://wa.me/5567999520449" class="btn btn-warning btn-lg" style="font-weight: 800;">
-                <i class="fab fa-whatsapp me-2"></i>
-                Solicitar Orçamento
-            </a>
+                <a href="#" class="btn btn-warning btn-lg" style="font-weight: 800;" data-bs-toggle="modal" data-bs-target="#whatsappModal">
+                    <i class="fab fa-whatsapp me-2"></i>
+                    Solicitar Orçamento
+                </a>
+                
+            
         </div>
     </div>
 </section>
@@ -1504,11 +1516,11 @@ if (document.readyState === 'loading') {
                 <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Estamos prontos para atender você</p>
             </div>
             <div class="row">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="contact-info p-4 rounded shadow-sm bg-white" data-aos="fade-right">
-                        <h3 class="mb-4">Informações de Contato</h3>
+                <div class="col-lg-6 mb-4 mb-lg-0" style="background:transparent !important; box-shadow: none !important;">
+                    <div style="background:transparent !important; box-shadow: none !important;" class="contact-info d-flex flex-column align-items-center justify-content-center p-4 rounded shadow-sm bg-white" data-aos="fade-right">
+                        <h3 class="mb-4">FALE COM UM DE<br> NOSSOS ESPECIALISTAS</h3>
                       
-                        <div class="contact-item mb-4">
+                        <div class="contact-item mb-4 d-none">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
@@ -1517,73 +1529,49 @@ if (document.readyState === 'loading') {
                                 <p>R. Piauí, 3234 - Centro, Votuporanga - SP, 15502-245</p>
                             </div>
                         </div>
-                        <div class="contact-item mb-4">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Telefone</h4>
-                                <p>(17) 98146-2112</p>
-                            </div>
-                        </div>
-    
-                        <div class="social-media mt-4">
-                            <h4>Redes Sociais</h4>
-                            <div class="d-flex mt-3">
                         
-                                <a href="https://www.instagram.com/engiesolar/" class="social-link">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                          
-                
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="contact-form p-4 rounded shadow-sm bg-white" data-aos="fade-left">
                         <h3 class="mb-4">Envie sua mensagem</h3>
-                        <form>
+                        <form id="formContatoWhatsapp">
                             <div class="mb-3">
-                                <label for="name" class="form-label" style="font-weight: 600;">Nome completo</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                                <div class="invalid-feedback">Por favor, informe seu nome.</div>
+                              <label for="userNameContato" class="form-label" style="font-weight: 600;">Nome completo</label>
+                              <input type="text" class="form-control" id="userNameContato" required>
                             </div>
+                          
                             <div class="mb-3">
-                                <label for="email" class="form-label" style="font-weight: 600;">E-mail</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                                <div class="invalid-feedback">Por favor, informe um e-mail válido.</div>
+                              <label for="projectTypeContato" class="form-label" style="font-weight: 600;">Tipo de Projeto</label>
+                              <select class="form-select" id="projectTypeContato" required>
+                                <option value="" selected disabled>Selecione o tipo de projeto</option>
+                                <option value="Energia solar para residências">Energia solar para residências</option>
+                                <option value="Energia solar para empresas">Energia solar para empresas</option>
+                                <option value="Projetos em áreas rurais">Projetos em áreas rurais</option>
+                              </select>
                             </div>
+                          
                             <div class="mb-3">
-                                <label for="phone" class="form-label" style="font-weight: 600;">Telefone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" required>
-                                <div class="invalid-feedback">Por favor, informe um telefone válido.</div>
+                              <label for="topicContato" class="form-label" style="font-weight: 600;">Tópico</label>
+                              <select class="form-select" id="topicContato" required>
+                                <option value="" selected disabled>Selecione o tópico</option>
+                                <option value="Solicitar orçamento">Solicitar orçamento</option>
+                                <option value="Tirar dúvidas">Tirar dúvidas</option>
+                                <option value="Agendar visita técnica">Agendar visita técnica</option>
+                                <option value="Outro assunto">Outro assunto</option>
+                              </select>
                             </div>
+                          
                             <div class="mb-3">
-                                <label for="subject" class="form-label" style="font-weight: 600;">Assunto</label>
-                                <select class="form-select" id="subject" name="subject" required>
-                                    <option value="" selected disabled>Selecione um assunto</option>
-                                    <option value="orcamento" style="font-weight: 500;">Solicitar orçamento</option>
-                                    <option value="duvida" style="font-weight: 500;">Tirar dúvidas</option>
-                                    <option value="visita" style="font-weight: 500;">Agendar visita técnica</option>
-                                    <option value="outro" style="font-weight: 500;">Outro assunto</option>
-                                </select>
-                                <div class="invalid-feedback" style="font-weight: 600;">Por favor, selecione um assunto.</div>
+                              <label for="userMessageContato" class="form-label" style="font-weight: 600;">Mensagem</label>
+                              <textarea class="form-control" id="userMessageContato" rows="4" required></textarea>
                             </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label" style="font-weight: 600;">Mensagem</label>
-                                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                                <div class="invalid-feedback">Por favor, escreva sua mensagem.</div>
-                            </div>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="privacy-policy" required>
-                                <label class="form-check-label" for="privacy-policy">
-                                    Concordo com a <a href="#">Política de Privacidade</a>
-                                </label>
-                                <div class="invalid-feedback">Você deve concordar com a política de privacidade.</div>
-                            </div>
-                            <button type="submit" class="btn btn-warning w-100">Enviar mensagem</button>
-                        </form>
+                         
+                          
+                            <button type="submit" class="btn btn-warning w-100">Enviar para WhatsApp</button>
+                          </form>
+                          
+                          
                         <div class="form-feedback mt-3"></div>
                     </div>
                 </div>
@@ -1663,34 +1651,98 @@ if (document.readyState === 'loading') {
 </footer>
 
 
-    <!-- WhatsApp Flutuante -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/5517981462112" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            <span class="whatsapp-text">Fale conosco</span>
-        </a>
-    </div>
+ <!-- WhatsApp Flutuante (abrindo modal) -->
+<div class="whatsapp-float">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#whatsappModal">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Fale conosco</span>
+    </a>
+</div>
+
 
     <!-- Botão Voltar ao Topo -->
     <div class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Modal para Timeline -->
-    <div class="modal fade" id="timelineModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Etapa do Processo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Conteúdo será inserido via JavaScript -->
-                </div>
+    <!-- Modal WhatsApp -->
+<div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="whatsappForm">
+            <div class="modal-header">
+              <h5 class="modal-title" id="whatsappModalLabel">Fale conosco via WhatsApp</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
-        </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="userName" class="form-label">Seu nome</label>
+                <input type="text" class="form-control" id="userName" placeholder="Ex: Ana Silva" required>
+              </div>
+          
+              <div class="mb-3">
+                <label for="projectType" class="form-label">Tipo de Projeto</label>
+                <select class="form-select" id="projectType" required>
+                  <option value="" selected disabled>Selecione o tipo de projeto</option>
+                  <option value="Energia solar para residências">Energia solar para residências</option>
+                  <option value="Energia solar para empresas">Energia solar para empresas</option>
+                  <option value="Projetos em áreas rurais">Projetos em áreas rurais</option>
+                </select>
+              </div>
+          
+              <div class="mb-3">
+                <label for="topic" class="form-label">Tópico</label>
+                <select class="form-select" id="topic" required>
+                  <option value="" selected disabled>Selecione o tópico</option>
+                  <option value="Solicitar orçamento">Solicitar orçamento</option>
+                  <option value="Tirar dúvidas">Tirar dúvidas</option>
+                  <option value="Agendar visita técnica">Agendar visita técnica</option>
+                  <option value="Outro assunto">Outro assunto</option>
+                </select>
+              </div>
+          
+              <div class="mb-3">
+                <label for="userMessage" class="form-label">Mensagem</label>
+                <textarea class="form-control" id="userMessage" rows="3" placeholder="Ex: Gostaria de saber mais sobre energia solar!" required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success w-100">Enviar para WhatsApp</button>
+            </div>
+          </form>
+          
+      </div>
     </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <script>
+    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const nome = document.getElementById('userName').value.trim();
+      const tipoProjeto = document.getElementById('projectType').value;
+      const topico = document.getElementById('topic').value;
+      const mensagem = document.getElementById('userMessage').value.trim();
+  
+      if (!nome || !tipoProjeto || !topico || !mensagem) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+  
+      const numero = '5517981462112'; // Número atualizado
+      const texto = `Olá, meu nome é ${nome}.\nTipo de projeto: ${tipoProjeto}\nTópico: ${topico}\nMensagem: ${mensagem}`;
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  
+      window.open(url, '_blank');
+  
+      const modal = bootstrap.Modal.getInstance(document.getElementById('whatsappModal'));
+      modal.hide();
+    });
+  </script>
+  
+  
 
 <!-- 1. SDKs externas primeiro -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
@@ -1705,7 +1757,28 @@ if (document.readyState === 'loading') {
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
+<script>
+    document.getElementById('formContatoWhatsapp').addEventListener('submit', function (e) {
+      e.preventDefault();
+    
+      const nome = document.getElementById('userNameContato').value.trim();
+      const tipoProjeto = document.getElementById('projectTypeContato').value;
+      const topico = document.getElementById('topicContato').value;
+      const mensagem = document.getElementById('userMessageContato').value.trim();
+    
+      if (!nome || !tipoProjeto || !topico || !mensagem) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+    
+      const numero = '5517981462112'; // WhatsApp destino
+      const texto = `Olá, meu nome é ${nome}.\nTipo de projeto: ${tipoProjeto}\nTópico: ${topico}\nMensagem: ${mensagem}`;
+    
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    });
+    </script>
+    
 <!-- 2. Supabase: inicialização + uso -->
 <script>
   const { createClient } = supabase;
@@ -1769,12 +1842,12 @@ if (document.readyState === 'loading') {
     }
 
     const nomes = [
-      { nome: 'João Silva', cargo: 'Empresário', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face' },
-      { nome: 'Maria Santos', cargo: 'Diretora Comercial', img: './img/marie-michele-bouchard-3U9BCWHMhUw-unsplash.jpg' },
-      { nome: 'Carlos Oliveira', cargo: 'Produtor Rural', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face' },
-      { nome: 'Ana Costa', cargo: 'Arquiteta', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face' },
-      { nome: 'Roberto Lima', cargo: 'Comerciante', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face' },
-      { nome: 'Pedro Alves', cargo: 'Engenheiro', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop&crop=face' },
+      { nome: 'João Silva', cargo: 'Empresário', img: 'img/wpp1.jpeg' },
+      { nome: 'Maria Santos', cargo: 'Diretora Comercial', img: 'img/wpp2.jpeg' },
+      { nome: 'Carlos Oliveira', cargo: 'Produtor Rural', img: 'img/wpp3.jpeg' },
+      { nome: 'Ana Costa', cargo: 'Arquiteta', img: 'img/wpp5.jpeg' },
+      { nome: 'Roberto Lima', cargo: 'Comerciante', img: 'img/wpp4.jpeg' },
+      { nome: 'Carla Viera', cargo: 'Engenheira', img: 'img/wpp6.jpg' },
     ];
 
     const container = document.getElementById('depoimentos-container');
@@ -1923,7 +1996,31 @@ if (document.readyState === 'loading') {
     }
 </script>
 
-
+<script>
+    document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const nome = document.getElementById('userName').value.trim();
+      const tipoProjeto = document.getElementById('projectType').value;
+      const topico = document.getElementById('topic').value;
+      const mensagem = document.getElementById('userMessage').value.trim();
+  
+      if (!nome || !tipoProjeto || !topico || !mensagem) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+  
+      const numero = '5517981462112'; // Número atualizado
+      const texto = `Olá, meu nome é ${nome}.\nTipo de projeto: ${tipoProjeto}\nTópico: ${topico}\nMensagem: ${mensagem}`;
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+  
+      window.open(url, '_blank');
+  
+      const modal = bootstrap.Modal.getInstance(document.getElementById('whatsappModal'));
+      modal.hide();
+    });
+  </script>
+  
 <script>
 async function carregarHero() {
     try {
@@ -2340,6 +2437,7 @@ async function carregarSolucoes() {
 <script src="js/map.js"></script>
 <script src="js/forms.js"></script>
 
+  
 
 </body>
 </html>
