@@ -107,6 +107,11 @@
         {
             text-align: justify !important;
         }
+
+        #contato .section-header.text-center.mb-5
+        {
+            display: none !important;
+        }
     }
    .hero-section-alt {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -129,6 +134,11 @@
         .hero-section-alt .container {
             position: relative;
             z-index: 2;
+        }
+        
+        body
+        {
+            overflow-x: hidden !important;
         }
 
         .hero-title {
@@ -352,7 +362,10 @@
             .hero-title {
                 font-size: 2.5rem;
             }
-
+            .stats-container p 
+            {
+                text-align: center !important;
+            }
             .display-3
             {
                 font-size: 1.6rem !important;
@@ -667,7 +680,7 @@ if (document.readyState === 'loading') {
         <div class="content-wrapper" data-aos="fade-right">
           <h2 class="section-title text-center" id="visao-subtitulo">Qual seria a visão da</h2>
           <h1 class="company-name mb-4 text-center text-md-start">Engie Solar</h1>
-          <p class="lead" id="visao-texto" style="font-weight: 400;">Somos especialistas em energia solar.
+          <p class="lead" id="visao-texto" style="font-weight: 400; text-align: justify !important;">Somos especialistas em energia solar.
                             Instalamos sistemas fotovoltaicos para residências e empresas que querem economizar na conta de luz, gerar sua própria energia e conquistar independência da rede elétrica.
 
                             Com tecnologia de ponta e projetos personalizados, garantimos alta eficiência, retorno financeiro rápido e um impacto real na sustentabilidade.
@@ -1027,10 +1040,10 @@ if (document.readyState === 'loading') {
                     </div>
                     <div class="testimonial-client">
                         <div class="client-avatar">
-                            <img src="public/img/wpp1.jpeg" alt="João Silva">
+                            <img src="public/img/wpp1.jpeg" alt="Marcos Silva">
                         </div>
                         <div class="client-info">
-                            <h4>João Silva</h4>
+                            <h4>Marcos Silva</h4>
                             <span>Empresário</span>
                         </div>
                     </div>
@@ -1051,10 +1064,10 @@ if (document.readyState === 'loading') {
                     </div>
                     <div class="testimonial-client">
                         <div class="client-avatar">
-                            <img src="./img/marie-michele-bouchard-3U9BCWHMhUw-unsplash.jpg" alt="Maria Santos">
+                            <img src="./img/marie-michele-bouchard-3U9BCWHMhUw-unsplash.jpg" alt="Cristiane Oliveira">
                         </div>
                         <div class="client-info">
-                            <h4>Maria Santos</h4>
+                            <h4>Cristiane Oliveira</h4>
                             <span>Diretora Comercial</span>
                         </div>
                     </div>
@@ -1078,7 +1091,7 @@ if (document.readyState === 'loading') {
                             <img src="public/img/wpp3.jpeg" alt="Carlos Oliveira">
                         </div>
                         <div class="client-info">
-                            <h4>Carlos Oliveira</h4>
+                            <h4>Welligton Luiz</h4>
                             <span>Produtor Rural</span>
                         </div>
                     </div>
@@ -1102,37 +1115,14 @@ if (document.readyState === 'loading') {
                             <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Ana Costa">
                         </div>
                         <div class="client-info">
-                            <h4>Ana Costa</h4>
+                            <h4>Camilla Moreira</h4>
                             <span>Arquiteta</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Depoimento 5 -->
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                <div class="testimonial-minimal-card">
-                    <div class="quote-icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="testimonial-quote" style="font-weight: 600;">
-                        "Equipe profissional e competente. Instalação limpa e sistema de alta qualidade."
-                    </p>
-                    <div class="testimonial-rating">
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <div class="testimonial-client">
-                        <div class="client-avatar">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Roberto Lima">
-                        </div>
-                        <div class="client-info">
-                            <h4>Roberto Lima</h4>
-                            <span>Comerciante</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+          
             <!-- Depoimento 6 -->
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                 <div class="testimonial-minimal-card">
@@ -1518,7 +1508,7 @@ if (document.readyState === 'loading') {
             <div class="row">
                 <div class="col-lg-6 mb-4 mb-lg-0" style="background:transparent !important; box-shadow: none !important;">
                     <div style="background:transparent !important; box-shadow: none !important;" class="contact-info d-flex flex-column align-items-center justify-content-center p-4 rounded shadow-sm bg-white" data-aos="fade-right">
-                        <h3 class="mb-4">FALE COM UM DE<br> NOSSOS ESPECIALISTAS</h3>
+                        <h2 class="mb-4 text-center">FALE COM UM DE<br> NOSSOS ESPECIALISTAS</h2>
                       
                         <div class="contact-item mb-4 d-none">
                             <div class="contact-icon">
@@ -1619,7 +1609,7 @@ if (document.readyState === 'loading') {
                     <li>Monitoramento</li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 d-none">
                 <!-- IDs para a seção de Newsletter -->
                 <h4 class="footer-title" id="footer-newsletter-title">Newsletter</h4>
                 <p id="footer-newsletter-text">Receba novidades e ofertas exclusivas diretamente no seu e-mail.</p>
@@ -1842,12 +1832,12 @@ if (document.readyState === 'loading') {
     }
 
     const nomes = [
-      { nome: 'João Silva', cargo: 'Empresário', img: 'img/wpp1.jpeg' },
-      { nome: 'Maria Santos', cargo: 'Diretora Comercial', img: 'img/wpp2.jpeg' },
-      { nome: 'Carlos Oliveira', cargo: 'Produtor Rural', img: 'img/wpp3.jpeg' },
-      { nome: 'Ana Costa', cargo: 'Arquiteta', img: 'img/wpp5.jpeg' },
-      { nome: 'Roberto Lima', cargo: 'Comerciante', img: 'img/wpp4.jpeg' },
-      { nome: 'Carla Viera', cargo: 'Engenheira', img: 'img/wpp6.jpg' },
+      { nome: 'Marcos Silva', cargo: 'Empresário', img: 'img/wpp1.jpeg' },
+      { nome: 'Cristiane Oliveira', cargo: 'Diretora Comercial', img: 'img/wpp2.jpeg' },
+      { nome: 'Welligton Luiz', cargo: 'Produtor Rural', img: 'img/wpp3.jpeg' },
+      { nome: 'Camilla Moreira', cargo: 'Arquiteta', img: 'img/wpp5.jpeg' },
+      { nome: 'Eder Gilson', cargo: 'Comerciante', img: 'img/wpp4.jpeg' },
+      { nome: 'Marcia Souza', cargo: 'Engenheira', img: 'img/wpp6.jpg' },
     ];
 
     const container = document.getElementById('depoimentos-container');
