@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body style="max-width: 100vw !important;">
     <!-- Preloader -->
     <div class="preloader d-none">
         <div class="spinner-border text-warning" role="status">
@@ -86,7 +86,7 @@
                 id="header-button" 
                 data-bs-toggle="modal" 
                 data-bs-target="#whatsappModal" 
-                data-aos="fade-left" 
+                data-aos="fade-up" 
                 style="font-weight: 800;">
                 Seja um franqueado
              </a>
@@ -136,10 +136,7 @@
             z-index: 2;
         }
         
-        body
-        {
-            overflow-x: hidden !important;
-        }
+     
 
         .hero-title {
             font-size: 3.5rem;
@@ -696,7 +693,7 @@ if (document.readyState === 'loading') {
       </div>
 
       <div class="col-lg-4">
-        <div class="image-wrapper d-flex justify-content-center" data-aos="fade-left">
+        <div class="image-wrapper d-flex justify-content-center" data-aos="fade-up">
           <img style="max-height: 40rem;" src="./img/Arthur - Engie Solar.png" alt="Energia Solar" class="img-fluid rounded shadow">
           <div class="experience-badge">
             <span class="years">500+</span>
@@ -840,7 +837,7 @@ if (document.readyState === 'loading') {
                             
                         </div>
                     </div>
-                    <div class="timeline-item" data-aos="fade-left" data-step="2" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                    <div class="timeline-item" data-aos="fade-up" data-step="2" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
                         <div class="timeline-icon">
                             <i class="fas fa-drafting-compass"></i>
                         </div>
@@ -860,7 +857,7 @@ if (document.readyState === 'loading') {
                             
                         </div>
                     </div>
-                    <div class="timeline-item" data-aos="fade-left" data-step="4" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                    <div class="timeline-item" data-aos="fade-up" data-step="4" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
                         <div class="timeline-icon">
                             <i class="fas fa-tools"></i>
                         </div>
@@ -1388,7 +1385,7 @@ if (document.readyState === 'loading') {
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="calculator-results p-4 rounded shadow-sm bg-white" data-aos="fade-left">
+                    <div class="calculator-results p-4 rounded shadow-sm bg-white" data-aos="fade-up">
                         <div class="result-header mb-4">
                             <h3>Resultados da simulação</h3>
                             <p class="text-muted">Baseado nos dados informados</p>
@@ -1521,7 +1518,7 @@ if (document.readyState === 'loading') {
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="contact-form p-4 rounded shadow-sm bg-white" data-aos="fade-left">
+                    <div class="contact-form p-4 rounded shadow-sm bg-white" data-aos="fade-up">
                         <h3 class="mb-4">Envie sua mensagem</h3>
                         <form id="formContatoWhatsapp">
                             <div class="mb-3">
@@ -1640,7 +1637,7 @@ if (document.readyState === 'loading') {
 
 
  <!-- WhatsApp Flutuante (abrindo modal) -->
-<div style="right: 3rem !important;" class="whatsapp-float">
+<div style="right: 30px !important;" class="whatsapp-float">
     <a href="#" data-bs-toggle="modal" data-bs-target="#whatsappModal">
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-text">Fale conosco</span>
