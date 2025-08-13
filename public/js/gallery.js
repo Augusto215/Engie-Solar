@@ -1,5 +1,3 @@
-// Script para a galeria de projetos com filtros dinâmicos
-
 document.addEventListener('DOMContentLoaded', function() {
     // Inicialização do Isotope para filtros de projetos
     const grid = document.querySelector('.grid');
@@ -7,22 +5,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const iso = new Isotope(grid, {
             itemSelector: '.grid-item',
             layoutMode: 'fitRows',
-            transitionDuration: '0.6s'
+            transitionDuration: '0.6s',
+            filter: '.residencial' // <-- já inicia filtrando por "residencial"
         });
 
-        // Filtros para a galeria de projetos
+        // Ajusta o botão ativo inicial
         const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector('.filter-button[data-filter=".residencial"]').classList.add('active');
+
+        // Filtros para a galeria de projetos
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const filterValue = this.getAttribute('data-filter');
                 
-                // Atualizar classe ativa nos botões
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                });
+                filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Filtrar os itens
                 iso.arrange({ filter: filterValue });
             });
         });
@@ -33,14 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
             card.addEventListener('mouseenter', function() {
                 this.querySelector('.project-overlay').style.opacity = '1';
             });
-            
             card.addEventListener('mouseleave', function() {
                 this.querySelector('.project-overlay').style.opacity = '0';
             });
         });
     }
 
-    // Filtros para o blog
+    // Filtros para o blog (mantém igual)
     const blogFilter = document.querySelector('.blog-filter');
     if (blogFilter) {
         const blogButtons = blogFilter.querySelectorAll('button');
@@ -50,13 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function() {
                 const category = this.getAttribute('data-category');
                 
-                // Atualizar classe ativa nos botões
-                blogButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                });
+                blogButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Filtrar os cards do blog
                 if (category === 'all') {
                     blogCards.forEach(card => {
                         card.style.display = 'block';
@@ -83,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
                 
-                // Atualizar AOS após filtrar
                 setTimeout(() => {
                     AOS.refresh();
                 }, 500);

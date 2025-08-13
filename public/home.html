@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engie Solar</title>
-    <link rel="icon" href="img/logo_url_1.ico" type="image/x-icon">
-
+    <link rel="icon" type="image/x-icon" href="img/logo_url_1.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo_url_1.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo_url_1.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/logo_url_1.ico">
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -596,7 +599,7 @@ if (document.readyState === 'loading') {
                                     <li>Usinas de investimento</li>
 
                                 </ul>
-                                <a href="#" class="btn btn-light mt-3">Saiba mais</a>
+                                <a data-bs-toggle="modal" data-bs-target="#whatsappModal" class="btn btn-light mt-3">Saiba mais</a>
                             </div>
                         </div>
                     </div>
@@ -620,7 +623,7 @@ if (document.readyState === 'loading') {
                                     <li>Usinas de investimento</li>
 
                                 </ul>
-                                <a href="#" class="btn btn-light mt-3">Saiba mais</a>
+                                <a data-bs-toggle="modal" data-bs-target="#whatsappModal" class="btn btn-light mt-3">Saiba mais</a>
                             </div>
                         </div>
                     </div>
@@ -645,7 +648,7 @@ if (document.readyState === 'loading') {
 
 
                                 </ul>
-                                <a href="#" class="btn btn-light mt-3" style="font-weight: 800;">Saiba mais</a>
+                                <a data-bs-toggle="modal" data-bs-target="#whatsappModal" class="btn btn-light mt-3">Saiba mais</a>
                             </div>
                         </div>
                     </div>
@@ -897,22 +900,21 @@ if (document.readyState === 'loading') {
     </div>
 
     <div class="filter-buttons text-center mb-4" data-aos="fade-up">
-      <button class="btn btn-outline-primary filter-button active" data-filter="*" style="font-weight: 500;">Todos</button>
-      <button class="btn btn-outline-primary filter-button" data-filter=".residencial" style="font-weight: 500;">Residencial</button>
+      <button class="btn d-none btn-outline-primary filter-button " data-filter="*" style="font-weight: 500;">Todos</button>
+      <button class="btn btn-outline-primary filter-button active" data-filter=".residencial" style="font-weight: 500;">Residencial</button>
       <button class="btn btn-outline-primary filter-button" data-filter=".comercial" style="font-weight: 500;">Investimento</button>
-      <button class="btn btn-outline-primary filter-button" data-filter=".rural" style="font-weight: 500;">Industrial</button>
-      <button class="btn btn-outline-primary filter-button" data-filter=".industrial" style="font-weight: 500;">Fazenda</button>
+      <button class="btn btn-outline-primary filter-button" data-filter=".rural" style="font-weight: 500;">Comercial</button>
+      <button class="btn btn-outline-primary filter-button" data-filter=".industrial" style="font-weight: 500;">Rural</button>
     </div>
 
     <div class="row grid" data-aos="fade-up">
       <div class="col-md-4 mb-4 grid-item residencial">
         <div class="project-card">
           <div class="project-image">
-            <img id="projeto-1" src="./img/Afonso (3).jpeg" alt="Projeto Residencial" class="img-fluid">
+            <img id="projeto-1" src="./img/6fccfe6a-28dd-4ee5-a55e-7a4413d2c9db.jpg" alt="Projeto Residencial" class="img-fluid">
             <div class="project-overlay">
               <div class="project-info">
                 <h4>Sistema Solar Residencial</h4>
-                <p>Potência: 5.2 kWp</p>
               </div>
             </div>
           </div>
@@ -929,7 +931,6 @@ if (document.readyState === 'loading') {
             <div class="project-overlay">
               <div class="project-info">
                 <h4>Sistema Solar Investimento</h4>
-                <p>Potência: 75.6 kWp</p>
               </div>
             </div>
           </div>
@@ -945,13 +946,42 @@ if (document.readyState === 'loading') {
             <img id="projeto-3" src="./img/nuno-marques-0GbrjL3vZF4-unsplash.jpg" alt="Projeto Industrial" class="img-fluid">
             <div class="project-overlay">
               <div class="project-info">
-                <h4>Sistema Solar Industrial</h4>
-                <p>Potência: 112.8 kWp</p>
+                <h4>Sistema Solar Comercial</h4>
               </div>
             </div>
           </div>
           <div class="project-details">
-            <h4>Sistema Solar Industrial</h4>
+            <h4>Sistema Solar Comercial</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 grid-item rural">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-3" src="./img/4fe4c7ca-6970-4e15-93b9-db5081e7c683.jpg" alt="Projeto Industrial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Comercial</h4>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Comercial</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 grid-item rural">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-3" src="./img/26b74bf2-30e6-4696-bd68-6e810af31532.jpg" alt="Projeto Industrial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Comercial</h4>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Comercial</h4>
           </div>
         </div>
       </div>
@@ -959,16 +989,45 @@ if (document.readyState === 'loading') {
       <div class="col-md-4 mb-4 grid-item industrial">
         <div class="project-card">
           <div class="project-image">
-            <img id="projeto-4" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?..." alt="Projeto Industrial" class="img-fluid">
+            <img id="projeto-4" src="./img/27ded588-14b2-45f4-8896-acebfac7c9cd.jpg" alt="Projeto Industrial" class="img-fluid">
             <div class="project-overlay">
               <div class="project-info">
-                <h4>Sistema Solar Fazenda</h4>
-                <p>Potência: 256.4 kWp</p>
+                <h4>Sistema Solar Rural</h4>
               </div>
             </div>
           </div>
           <div class="project-details">
-            <h4>Sistema Solar Fazenda</h4>
+            <h4>Sistema Solar Rural</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 grid-item industrial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-4" src="./img/3582aa5e-e938-4c88-b08e-5c673dc8f060.jpg" alt="Projeto Industrial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Rural</h4>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Rural</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 grid-item industrial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-4" src="./img/e4190736-e4aa-47a9-8c5c-c9840f1a898f.jpg" alt="Projeto Industrial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Rural</h4>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Rural</h4>
           </div>
         </div>
       </div>
@@ -976,11 +1035,26 @@ if (document.readyState === 'loading') {
       <div class="col-md-4 mb-4 grid-item residencial">
         <div class="project-card">
           <div class="project-image">
-            <img id="projeto-5" src="img/paineis-solares.webp" alt="Projeto Residencial" class="img-fluid">
+            <img id="projeto-5" src="./img/267a2b11-dbe3-44e5-a8ba-c51bd9ad589c.jpg" alt="Projeto Residencial" class="img-fluid">
             <div class="project-overlay">
               <div class="project-info">
                 <h4>Sistema Solar Residencial</h4>
-                <p>Potência: 8.7 kWp</p>
+              </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Residencial</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4 grid-item residencial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-5" src="./img/728ded51-d545-4349-b189-75f2f632e826.jpg" alt="Projeto Residencial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Residencial</h4>
               </div>
             </div>
           </div>
@@ -993,12 +1067,26 @@ if (document.readyState === 'loading') {
       <div class="col-md-4 mb-4 grid-item comercial">
         <div class="project-card">
           <div class="project-image">
-            <img id="projeto-6" src="./img/american-public-power-association-fm5_vCUa-Bc-unsplash.jpg" alt="Projeto Comercial" class="img-fluid">
+            <img id="projeto-6" src="./img/391c49ad-4e04-420d-9a35-691d73034e68.jpg" alt="Projeto Comercial" class="img-fluid">
             <div class="project-overlay">
               <div class="project-info">
                 <h4>Sistema Solar Investimento</h4>
-                <p>Potência: 32.4 kWp</p>
-              </div>
+               </div>
+            </div>
+          </div>
+          <div class="project-details">
+            <h4>Sistema Solar Investimento</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 grid-item comercial">
+        <div class="project-card">
+          <div class="project-image">
+            <img id="projeto-6" src="./img/92d1d571-a976-4df0-a69d-5976ba92add6.jpg" alt="Projeto Comercial" class="img-fluid">
+            <div class="project-overlay">
+              <div class="project-info">
+                <h4>Sistema Solar Investimento</h4>
+               </div>
             </div>
           </div>
           <div class="project-details">
@@ -1777,7 +1865,7 @@ if (document.readyState === 'loading') {
   );
 </script>
 
-
+<!-- 
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -1807,7 +1895,7 @@ if (document.readyState === 'loading') {
     }
   });
 </script>
-
+-->
 
 <!-- 3. Depoimentos direto do Supabase -->
 <script>
@@ -2399,7 +2487,6 @@ async function carregarSolucoes() {
     carregarFooter();
     carregarVisao();
     carregarSolucoes();
-    carregarProjetos();
     carregarDepoimentos();
 
     // Aguarda renderização de todos os elementos antes de carregar diferenciais
